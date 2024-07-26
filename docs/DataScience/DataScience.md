@@ -1,6 +1,6 @@
 # Data Science
 
-sprawdzenie typu zmiennej 
+sprawdzenie typu zmiennej
 
 ```python
 type(nazwa_zmiennej)
@@ -18,7 +18,7 @@ bool - typ wartosć logiczna True/False
 
 ### Lista
 
-Zbiór danych zapisanych pod nazwą zmiennej. W pythonie można zapisywać różne typy zmiennej  do tej samej tablicy.  Można zapisywać listy w listach. 
+Zbiór danych zapisanych pod nazwą zmiennej. W pythonie można zapisywać różne typy zmiennej do tej samej tablicy. Można zapisywać listy w listach.
 
 ```python
 hall = 11.25
@@ -40,11 +40,11 @@ print(house)
 
 ### Indeksowanie elementów tablicy
 
-Indeksowanie elementów tablicy zaczyna się od liczby 0. 
+Indeksowanie elementów tablicy zaczyna się od liczby 0.
 
 ```python
 # Create the areas list
-areas = ["hallway", 11.25, "kitchen", 18.0, "living room", 20.0, 
+areas = ["hallway", 11.25, "kitchen", 18.0, "living room", 20.0,
 "bedroom", 10.75, "bathroom", 9.50]
 
 # Print out second element from areas
@@ -54,7 +54,7 @@ print(areas[1])
 #11.25
 ```
 
- Indeks -1 oznacza ostatni element w tablicy. 
+Indeks -1 oznacza ostatni element w tablicy.
 
 ```python
 # Print out last element from areas
@@ -64,7 +64,7 @@ print(areas[-1])
 #9.5
 ```
 
-Można wykorzystać przedział, jaki chcemy, aby został wyświetlony.  Zwracany są elementy nieuwzględniającego ostatniego podanego indeksu.
+Można wykorzystać przedział, jaki chcemy, aby został wyświetlony. Zwracany są elementy nieuwzględniającego ostatniego podanego indeksu.
 
 ```python
 
@@ -81,7 +81,7 @@ downstairs = areas[:6]
 #Output
 #['hallway', 11.25, 'kitchen', 18.0, 'living room', 20.0]
 
-#Utwórz górę, jako ostatnie 4 elementy obszarów. Tym razem uprość cięcie, pomijając 
+#Utwórz górę, jako ostatnie 4 elementy obszarów. Tym razem uprość cięcie, pomijając
 #indeks końcowy.
 
 upstairs = areas[6:]
@@ -112,10 +112,10 @@ house[-1][1]
 
 Zmiana wartości w liście
 
-Można dokonać zmiany wartości w liście przypisując jej jakąś wartość. 
+Można dokonać zmiany wartości w liście przypisując jej jakąś wartość.
 
 ```python
-areas = ["hallway", 11.25, "kitchen", 18.0, "living room", 20.0, "bedroom", 10.75, 
+areas = ["hallway", 11.25, "kitchen", 18.0, "living room", 20.0, "bedroom", 10.75,
 "bathroom", 9.50]
 
 areas[-1] = 10.50
@@ -126,7 +126,7 @@ areas[4] = "chill zone"
 Można także przypisać wartości do kilku wybranych indeksów.
 
 ```python
-areas[2:4] = ["garage", 14.45] 
+areas[2:4] = ["garage", 14.45]
 ```
 
 Można także dopisać nowe elementy do istniejącej tablicy
@@ -135,7 +135,7 @@ Można także dopisać nowe elementy do istniejącej tablicy
 areas_1 = areas + ["poolhouse", 24.5]
 ```
 
-Można także usuwać elementy z listy. 
+Można także usuwać elementy z listy.
 
 ```python
 del areas[10:12]
@@ -145,9 +145,9 @@ del areas[10:12]
 # 'bathroom', 10.5, 'garage', 15.45]
 ```
 
-Jak jest zmienna to ona przechowuje wskaźnik na listę. 
+Jak jest zmienna to ona przechowuje wskaźnik na listę.
 
-Zapisanie tablicy pod nową zmienną **y** 
+Zapisanie tablicy pod nową zmienną **y**
 
 ```python
 x = ["a", "b", "c"]
@@ -165,12 +165,12 @@ x
 
 Spowoduje skopiowanie odniesienia do listy, a nie same wartości. Wskazuje ona na to samo miejsce w pamięci
 
-Aby wskazać inne miejsce w pamięci należy użyć funkcji listy. 
+Aby wskazać inne miejsce w pamięci należy użyć funkcji listy.
 
 ```python
 x = ["a", "b", "c"]
 y = list(x)
-y = x[:]  
+y = x[:]
 y[1] = "z"
 x
 
@@ -192,7 +192,7 @@ max() - znajduje maksymalna wartość
 
 min() - znajduje minimalną wartość
 
-round() - zaokrągla 
+round() - zaokrągla
 
 len() - zwraca długość tablicy
 
@@ -219,7 +219,7 @@ help(nazwa_funkcji)
 Zwracanie indeksu
 
 ```python
-areas = ["hallway", 11.25, "kitchen", 18.0, "living room", 20.0, "bedroom", 10.75, 
+areas = ["hallway", 11.25, "kitchen", 18.0, "living room", 20.0, "bedroom", 10.75,
 "bathroom", 9.50]
 
 areas.index("kitchen")
@@ -286,7 +286,7 @@ Wykorzystanie NumPy
 ```python
 np_height = np.array(height)
 np_weight = np.array(weight)
-np_weight / np_height ** 2 
+np_weight / np_height ** 2
 
 #Output
 #array([21.85171573, 20.97505669, 21.75028214, 24.7473475 , 21.44127836])
@@ -490,7 +490,7 @@ np_pop = np_pop * 2
 plt.scatter(gdp_cap, life_exp, s = np_pop)
 
 # Previous customizations
-plt.xscale('log') 
+plt.xscale('log')
 plt.xlabel('GDP per Capita [in USD]')
 plt.ylabel('Life Expectancy [in years]')
 plt.title('World Development in 2007')
@@ -502,7 +502,7 @@ plt.show()
 
 Rezultat
 
-![Untitled](Data%20Science%20eefd0a54ac2b4175b68207e2049e3753/Untitled%204.png)
+![Untitled](DataScience/Untitled4.png)
 
 Argument `c` w funkcji `scatter` oznacza dostosowanie kolorów.
 
@@ -513,7 +513,7 @@ Można dodać opisy do poszczególnych punktów na wykresie
 plt.scatter(x = gdp_cap, y = life_exp, s = np.array(pop) * 2, c = col, alpha = 0.8)
 
 # Previous customizations
-plt.xscale('log') 
+plt.xscale('log')
 plt.xlabel('GDP per Capita [in USD]')
 plt.ylabel('Life Expectancy [in years]')
 plt.title('World Development in 2007')
@@ -530,7 +530,7 @@ plt.grid(True)
 plt.show()
 ```
 
-![Untitled](Data%20Science%20eefd0a54ac2b4175b68207e2049e3753/Untitled%205.png)
+![Untitled](DataScience/Untitled5.png)
 
 ### Słowniki
 
@@ -562,7 +562,7 @@ world = {"afghanistan": 30.55, "albania": 2.77, "algeria": 39.21}
 print(world["albania"])  # Wynik: 2.77
 ```
 
-Słownik skonstruowany jest w sposób ***klucz : wartość*** Pozwala to uniknąć . Dostęp do wartości obywa się poprzez klucz.
+Słownik skonstruowany jest w sposób **_klucz : wartość_** Pozwala to uniknąć . Dostęp do wartości obywa się poprzez klucz.
 
 Kolejny przykład stworzenia słownika (Przykład pochodzi z Data Campa)
 
@@ -594,9 +594,9 @@ print(europe.keys())
 print(europe['norway'])
 ```
 
-Klucze w słowniku są obiektami, które są niezmienne. Klucze powinny być unikalne. Możemy zmieniać jedynie wartości tych kluczy. 
+Klucze w słowniku są obiektami, które są niezmienne. Klucze powinny być unikalne. Możemy zmieniać jedynie wartości tych kluczy.
 
-Można dodawać nowe rekordy słownika. 
+Można dodawać nowe rekordy słownika.
 
 wykonujemy to poprzez
 
@@ -691,7 +691,7 @@ brics.index = ["BR", "RU", "IN", "CH", "SA"]
 brics
 ```
 
-Importowanie danych z pliku csv odbywa się przy użyciu komendy 
+Importowanie danych z pliku csv odbywa się przy użyciu komendy
 
 ```python
 brics = pd.read_csv("path/to/brics.csv")
@@ -700,11 +700,11 @@ brics
 
 ![Untitled](Data%20Science%20eefd0a54ac2b4175b68207e2049e3753/Untitled%206.png)
 
-Aby ustalić indeksy w ramce danych korzystamy z argumentu index_col. 
+Aby ustalić indeksy w ramce danych korzystamy z argumentu index_col.
 
 ![Untitled](Data%20Science%20eefd0a54ac2b4175b68207e2049e3753/Untitled%207.png)
 
-Kolejny przykład stworzenia słownika, który składa się w sobie z innych słowników. 
+Kolejny przykład stworzenia słownika, który składa się w sobie z innych słowników.
 
 ```python
 # Pre-defined lists
@@ -735,29 +735,29 @@ print(cars)
 #    6          Egypt          True            45
 ```
 
-Ustawienie własnych indeksów wykonuje się poprzez użycie komendy. 
+Ustawienie własnych indeksów wykonuje się poprzez użycie komendy.
 
 ```python
 # Definition of row_labels
 row_labels = ['US', 'AUS', 'JPN', 'IN', 'RU', 'MOR', 'EG']
 
 # Specify row labels of cars
-cars.index = row_labels 
+cars.index = row_labels
 ```
 
 **Dostep do danych**
 
-Aby wyświetlić tylko jedną kolumne można to zrobić na dwa sposoby 
+Aby wyświetlić tylko jedną kolumne można to zrobić na dwa sposoby
 
 ```python
-brigs["country"] 
+brigs["country"]
 
 #LUB
 
 brigs.country
 ```
 
-Aby zachować dane tego samego typu jak w początkowej ramce danych, należy skorzystać z podwójnych nawiasów kwadratowych. W przeciwnym razie dane zostaną zapisane w serii. 
+Aby zachować dane tego samego typu jak w początkowej ramce danych, należy skorzystać z podwójnych nawiasów kwadratowych. W przeciwnym razie dane zostaną zapisane w serii.
 
 ```python
 brigs[["country"]]
@@ -769,10 +769,10 @@ Można wybrać typ ramki danych dwie kolumny lub więcej.
 brigs[["country", "capital"]]
 ```
 
-/TO  DO 
+/TO DO
 Doczytać o tym więcej
 
-Aby uzyskać dostęp do wybranych danych, należy skorzystać z indeksów. Indeksy numerowane są od 0. 
+Aby uzyskać dostęp do wybranych danych, należy skorzystać z indeksów. Indeksy numerowane są od 0.
 
 ```python
 brigs[1:4]
@@ -790,7 +790,7 @@ Podwójny nawias kwadratowy powoduje ze dane są w typu ramki danych.
 brigs.loc[["RU"]]
 ```
 
-Typ Series używany gdy chcesz używać danych jako operacja typowe dla sekwencji, czyli takie jak obliczanie statystyk, funkcje agregujące. Typ DataFrame podwójne nawiasy używane są gdy chcemy użyć filtrowania, dołączania kolumn czy tabel. 
+Typ Series używany gdy chcesz używać danych jako operacja typowe dla sekwencji, czyli takie jak obliczanie statystyk, funkcje agregujące. Typ DataFrame podwójne nawiasy używane są gdy chcemy użyć filtrowania, dołączania kolumn czy tabel.
 
 Można uzyskać dostęp do wielu wierszy.
 
@@ -813,183 +813,151 @@ brigs.loc[:, ["country", "capital"]]
 **Podsumowanie**
 
 - **Użycie nawiasów kwadratowych**:
-    - Dostęp do kolumn: `brics[["country", "capital"]]`
-    - Dostęp do wierszy poprzez wycinanie: `brics[1:4]`
+  - Dostęp do kolumn: `brics[["country", "capital"]]`
+  - Dostęp do wierszy poprzez wycinanie: `brics[1:4]`
 - **Użycie `loc` (dostęp oparty na etykietach)**:
-    - Dostęp do wierszy: `brics.loc[["RU", "IN", "CH"]]`
-    - Dostęp do kolumn: `brics.loc[:, ["country", "capital"]]`
-    - Dostęp do wierszy i kolumn jednocześnie: `brics.loc[["RU", "IN", "CH"], ["country", "capital"]]`
-    
-    Można uzyskać dostęp przy użyciu indeksu.  Poniższe wyrażenie:
-    
-    ```python
-    brigs.loc[["RU", "IN", "CH"], ["country", "capital"]]
-    ```
-    
-    Można zastąpić indeksami z wykorzystaniem metody `iloc` .
-    
-    ```python
-    brigs.iloc[[1,2,3], [0,1]]
-    ```
-    
-    Analogicznie
-    
-    ```python
-    brigs.loc[:, ["country", "capital"]]
-    ```
-    
-    ```python
-    brigs.iloc[:, [0,1]]
-    ```
-    
-    ### Operatory logiczne
-    
-    - `<` - Strictly less than
-    - `<=` - Less than or equal
-    - `>` - Strictly greater than
-    - `>=` - Greater than or equal
-    - `==` - Equal
-    - `!=` - Not equal
-    
-    `AND`
-    
-    `OR`
-    
-    `NOT`
-    
-    Porównanie array w NumPy przy użyciu `and`, `or`, `not` wyświetla błąd.
-    
-    ```python
-    bmi = array([21.85171573, 20.97505669, 21.75028214, 24.7473475, 21.44127836])
-    
-    bmi > 21 and bmi < 22
-    
-    #Output
-    #ValueError: The truth value of an array with more than one element is ambiguous. 
-    #Use a.any() or a.all()
-    ```
-    
-    Należy użyć odpowiadających metod:
-    
-    ```python
-    logical_and()
-    logical_or()
-    logical_not()
-    ```
-    
-    Poprawne użycie wygląda następująco:
-    
-    ```python
-    np.logical_and(bmi > 21, bmi < 22)
-    
-    #Output
-    #array([True, False, True, False, True], dtype=bool)
-    ```
-    
-    Wyświetlenie odpowiednich wartości spełniających warunki. 
-    
-    ```python
-    bmi[np.logical_and(bmi > 21, bmi < 22)]
-    
-    #Output
-    #array([21.852, 21.75, 21.441])
-    
-    ```
-    
-    ### Wyrażenie warunkowe
-    
-    ```python
-    # Define variables
-    room = "bed"
-    area = 14.0
-    
-    # if-elif-else construct for room
-    if room == "kit" :
-        print("looking around in the kitchen.")
-    elif room == "bed":
-        print("looking around in the bedroom.")
-    else :
-        print("looking around elsewhere.")
-    
-    # if-elif-else construct for area
-    if area > 15 :
-        print("big place!")
-    elif area > 10:
-        print("medium size, nice!")
-    else :
-        print("pretty small.")
-    ```
-    
-    Funkcja `elif` działa wtedy gdy warunek pierwszy oznaczony jako `if` nie został spełniony. Jeśli pierwszy warunek został spełniony to operacja `elif` nie zostanie wykonana. Może być wiele warunków `elif` . Jeśli pierwszy warunek `if` nie zostanie spełniony to przechodzi po kolei po kolejnych warunkach `elif`.
-    
-    ### Filtrowanie danych
-    
-    Jeśli w ramce danych będzie kolumna, której będą wartości logiczne `True`, `False` , to nie trzeba pisać dodatkowego warunku. 
-    
-    ```python
-    # Import cars data
-    import pandas as pd
-    cars = pd.read_csv('cars.csv', index_col = 0)
-    print(cars)
-    #				 cars_per_cap        country  drives_right
-    #    US            809  United States          True
-    #    AUS           731      Australia         False
-    #    JPN           588          Japan         False
-    #    IN             18          India         False
-    #    RU            200         Russia          True
-    #    MOR            70        Morocco          True
-    #    EG             45          Egypt          True
-    
-    # Extract drives_right column as Series: dr
-    dr = cars["drives_right"]
-    
-    # Use dr to subset cars: sel
-    sel = cars[dr]
-    
-    # Print sel
-    print(sel)
-    
-    #Output
-    #         cars_per_cap        country  drives_right
-    #    US            809  United States          True
-    #    RU            200         Russia          True
-    #    MOR            70        Morocco          True
-    #    EG             45          Egypt          True
-    
-    ```
-    
-    Można zapisać poniższe komendy krocej
-    
-    ```python
-    dr = cars["drives_right"]
-    
-    sel = cars[dr]
-    ```
-    
-    ```python
-    sel = cars[cars['drives_right']]
-    ```
-    
-    Gdy należy spełnić wiele warunków, warto skorzystać ze wcześniejszych funkcji takich jak [**`np.logical_and()`**](http://docs.scipy.org/doc/numpy-1.10.0/reference/generated/numpy.logical_and.html), [**`np.logical_or()`**](http://docs.scipy.org/doc/numpy-1.10.0/reference/generated/numpy.logical_or.html) lub [**`np.logical_not()`**](http://docs.scipy.org/doc/numpy-1.10.0/reference/generated/numpy.logical_not.html), 
-    
-    ```python
-    # Import cars data
-    import pandas as pd
-    cars = pd.read_csv('cars.csv', index_col = 0)
-    
-    # Import numpy, you'll need this
-    import numpy as np
-    
-    # Create medium: observations with cars_per_cap between 100 and 500
-    
-    cpc = cars['cars_per_cap']
-    between = np.logical_and(cpc > 100, cpc < 500)
-    medium = cars[between]
-    
-    # Print medium
-    print(medium)
-    ```
-    
+  - Dostęp do wierszy: `brics.loc[["RU", "IN", "CH"]]`
+  - Dostęp do kolumn: `brics.loc[:, ["country", "capital"]]`
+  - Dostęp do wierszy i kolumn jednocześnie: `brics.loc[["RU", "IN", "CH"], ["country", "capital"]]`
+  Można uzyskać dostęp przy użyciu indeksu. Poniższe wyrażenie:
+  ```python
+  brigs.loc[["RU", "IN", "CH"], ["country", "capital"]]
+  ```
+  Można zastąpić indeksami z wykorzystaniem metody `iloc` .
+  ```python
+  brigs.iloc[[1,2,3], [0,1]]
+  ```
+  Analogicznie
+  ```python
+  brigs.loc[:, ["country", "capital"]]
+  ```
+  ```python
+  brigs.iloc[:, [0,1]]
+  ```
+  ### Operatory logiczne
+  - `<` - Strictly less than
+  - `<=` - Less than or equal
+  - `>` - Strictly greater than
+  - `>=` - Greater than or equal
+  - `==` - Equal
+  - `!=` - Not equal
+  `AND`
+  `OR`
+  `NOT`
+  Porównanie array w NumPy przy użyciu `and`, `or`, `not` wyświetla błąd.
+  ```python
+  bmi = array([21.85171573, 20.97505669, 21.75028214, 24.7473475, 21.44127836])
+
+  bmi > 21 and bmi < 22
+
+  #Output
+  #ValueError: The truth value of an array with more than one element is ambiguous.
+  #Use a.any() or a.all()
+  ```
+  Należy użyć odpowiadających metod:
+  ```python
+  logical_and()
+  logical_or()
+  logical_not()
+  ```
+  Poprawne użycie wygląda następująco:
+  ```python
+  np.logical_and(bmi > 21, bmi < 22)
+
+  #Output
+  #array([True, False, True, False, True], dtype=bool)
+  ```
+  Wyświetlenie odpowiednich wartości spełniających warunki.
+  ```python
+  bmi[np.logical_and(bmi > 21, bmi < 22)]
+
+  #Output
+  #array([21.852, 21.75, 21.441])
+
+  ```
+  ### Wyrażenie warunkowe
+  ```python
+  # Define variables
+  room = "bed"
+  area = 14.0
+
+  # if-elif-else construct for room
+  if room == "kit" :
+      print("looking around in the kitchen.")
+  elif room == "bed":
+      print("looking around in the bedroom.")
+  else :
+      print("looking around elsewhere.")
+
+  # if-elif-else construct for area
+  if area > 15 :
+      print("big place!")
+  elif area > 10:
+      print("medium size, nice!")
+  else :
+      print("pretty small.")
+  ```
+  Funkcja `elif` działa wtedy gdy warunek pierwszy oznaczony jako `if` nie został spełniony. Jeśli pierwszy warunek został spełniony to operacja `elif` nie zostanie wykonana. Może być wiele warunków `elif` . Jeśli pierwszy warunek `if` nie zostanie spełniony to przechodzi po kolei po kolejnych warunkach `elif`.
+  ### Filtrowanie danych
+  Jeśli w ramce danych będzie kolumna, której będą wartości logiczne `True`, `False` , to nie trzeba pisać dodatkowego warunku.
+  ```python
+  # Import cars data
+  import pandas as pd
+  cars = pd.read_csv('cars.csv', index_col = 0)
+  print(cars)
+  #				 cars_per_cap        country  drives_right
+  #    US            809  United States          True
+  #    AUS           731      Australia         False
+  #    JPN           588          Japan         False
+  #    IN             18          India         False
+  #    RU            200         Russia          True
+  #    MOR            70        Morocco          True
+  #    EG             45          Egypt          True
+
+  # Extract drives_right column as Series: dr
+  dr = cars["drives_right"]
+
+  # Use dr to subset cars: sel
+  sel = cars[dr]
+
+  # Print sel
+  print(sel)
+
+  #Output
+  #         cars_per_cap        country  drives_right
+  #    US            809  United States          True
+  #    RU            200         Russia          True
+  #    MOR            70        Morocco          True
+  #    EG             45          Egypt          True
+
+  ```
+  Można zapisać poniższe komendy krocej
+  ```python
+  dr = cars["drives_right"]
+
+  sel = cars[dr]
+  ```
+  ```python
+  sel = cars[cars['drives_right']]
+  ```
+  Gdy należy spełnić wiele warunków, warto skorzystać ze wcześniejszych funkcji takich jak [**`np.logical_and()`**](http://docs.scipy.org/doc/numpy-1.10.0/reference/generated/numpy.logical_and.html), [**`np.logical_or()`**](http://docs.scipy.org/doc/numpy-1.10.0/reference/generated/numpy.logical_or.html) lub [**`np.logical_not()`**](http://docs.scipy.org/doc/numpy-1.10.0/reference/generated/numpy.logical_not.html),
+  ```python
+  # Import cars data
+  import pandas as pd
+  cars = pd.read_csv('cars.csv', index_col = 0)
+
+  # Import numpy, you'll need this
+  import numpy as np
+
+  # Create medium: observations with cars_per_cap between 100 and 500
+
+  cpc = cars['cars_per_cap']
+  between = np.logical_and(cpc > 100, cpc < 500)
+  medium = cars[between]
+
+  # Print medium
+  print(medium)
+  ```
 
 ### Pęlte while i for.
 
@@ -1004,12 +972,12 @@ while offset != 0 :
     print("correcting...")
     if offset > 0 :
       offset -= 1
-    else : 
-      offset += 1   
+    else :
+      offset += 1
     print(offset)
 ```
 
- **Pętla for**
+**Pętla for**
 
 ```python
 fam = [1.73, 1.68, 1.71, 1.89]
@@ -1029,8 +997,8 @@ metoda `enumerate` pozwala na uzyskanie indeksu.
 fam = [1.73, 1.68, 1.71, 1.89]
 for index, height in enumerate(fam):
     print("index " + str(index) + ": " + str(height))
-    
-#Output    
+
+#Output
 #index 0: 1.73
 #index 1: 1.68
 #index 2: 1.71
@@ -1055,16 +1023,16 @@ for c in "family":
 
 ```python
 # house list of lists
-house = [["hallway", 11.25], 
-         ["kitchen", 18.0], 
-         ["living room", 20.0], 
-         ["bedroom", 10.75], 
+house = [["hallway", 11.25],
+         ["kitchen", 18.0],
+         ["living room", 20.0],
+         ["bedroom", 10.75],
          ["bathroom", 9.50]]
-         
+
 # Build a for loop from scratch
 for name, area in house:
     print("the " + str(name) + " is " + str(area) + " sqm" )
-    
+
     #output:
     #the hallway is 11.25 sqm
     #the kitchen is 18.0 sqm
@@ -1079,7 +1047,7 @@ Pętla w słowniku
 world = {"afghanistan": 30.55, "albania": 2.77, "algeria": 39.21}
 for key, value in world:
     print(key + " -- " + str(value))
-   
+
 #Output
 #ValueError: too many values to unpack (expected 2)
 ```
@@ -1089,11 +1057,11 @@ Ten błąd wynika z tego, że podczas iteracji po słowniku `world` bezpośredni
 ```python
 for key, value in world.items():
     print(key + " -- " + str(value))
- 
-#Output    
+
+#Output
 #Algeria -- 39.21
 #Afghanistan -- 30.55
-#Albania -- 2.77    
+#Albania -- 2.77
 ```
 
 Trzeba pamiętać, że kolejność ma znaczenie. **Pierwsza zmienna otrzymuje klucz, a druga wartość.**
@@ -1114,7 +1082,7 @@ for val in meas :
 #[65.4, 59.2, 63.6, 88.4, 68.7]
 ```
 
-W powyższym przypadku pętla for wypisuje cala tablice w każdej iteracji. 
+W powyższym przypadku pętla for wypisuje cala tablice w każdej iteracji.
 
 Wypisanie każdego elementu tablicy wykonuje się poprzez wykorzystanie funkcji `nditer()`.
 
@@ -1152,41 +1120,41 @@ for x in np_height :
     print(str(x) + " inches")
 
 # For loop over np_baseball
-for x in np.nditer(np_baseball) : 
+for x in np.nditer(np_baseball) :
     print(x)
 ```
 
 ### Iterowanie po DataFrame za pomocą for
 
-DataFrame działają inaczej niż 2D NumPy.  Nie wyświetla każdego wiersza tylko wyświetli nazwy etykiet czyli nazwy kolumn. 
+DataFrame działają inaczej niż 2D NumPy. Nie wyświetla każdego wiersza tylko wyświetli nazwy etykiet czyli nazwy kolumn.
 
 ```python
-import pandas as pd 
+import pandas as pd
 brics = pd.read_csv("brics.csv", index_col = 0)
 for val in brics:
 	print(val)
 ```
 
-W takim przypadku otrzymamy nazwy kolumn 
+W takim przypadku otrzymamy nazwy kolumn
 
 `column,`
 
 `capital,`
 
- `area,`
+`area,`
 
- `population`
+`population`
 
 ### iterrows()
 
-Metoda `iterrows()` w bibliotece pandas w Pythonie służy do iterowania po wierszach DataFrame. Dla każdej iteracji zwraca parę (indeks, seria), gdzie "indeks" to etykieta wiersza, a "seria" to obiekt Series zawierający dane danego wiersza. 
+Metoda `iterrows()` w bibliotece pandas w Pythonie służy do iterowania po wierszach DataFrame. Dla każdej iteracji zwraca parę (indeks, seria), gdzie "indeks" to etykieta wiersza, a "seria" to obiekt Series zawierający dane danego wiersza.
 
 ```python
 import pandas as pd
 brics = pd.read_csv("brics.csv", index_col = 0)
 for lab, row in brics.iterrows():
 	print(lab)
-	print(row) 
+	print(row)
 ```
 
 **Brazylia (BR):**
@@ -1203,14 +1171,14 @@ for lab, row in brics.iterrows():
 - **Powierzchnia:** 17.1 (jednostka nie podana, prawdopodobnie mln km²)
 - **Populacja:** 143.5 (jednostka nie podana, prawdopodobnie mln)
 
-**Można wyświetlić tylko stolice danego indeksu.** 
+**Można wyświetlić tylko stolice danego indeksu.**
 
 ```python
 import pandas as pd
 brics = pd.read_csv("brics.csv", index_col = 0)
 for lab, row in brics.iterrows():
 	print(lab + ": " + row["capital"])
-	
+
 #Output
 #BR: Brasilia
 #RU: Moscow
@@ -1238,7 +1206,7 @@ print(brics)
 #| SA   | South Africa  | Pretoria  | 1.221  | 52.98      | 12          |
 ```
 
-Tutaj może nastąpic spadek wydajności. Należy całą kolumnę DataFrame 
+Tutaj może nastąpic spadek wydajności. Należy całą kolumnę DataFrame
 
 ```python
 import pandas as pd
@@ -1258,7 +1226,7 @@ print(brics)
 
 ## Joining Data with Pandas
 
-Informacje  o danych z pliku
+Informacje o danych z pliku
 
 ```python
 wards = pd.read_csv("Ward_Offices.csv")
@@ -1295,7 +1263,7 @@ Marging tables
 
 **Inner join**
 
-Poniższy kod pobiera pierwszą ramkę DataFrame i łączy ją z drugą ramką DataFrame. i łączy ją po kolumnie ***ward.***
+Poniższy kod pobiera pierwszą ramkę DataFrame i łączy ją z drugą ramką DataFrame. i łączy ją po kolumnie **_ward._**
 
 ```python
 wards_census = wards.merge(census, on="ward")
@@ -1312,7 +1280,7 @@ print(wards_census.head(4))
 
 ![Untitled](Data%20Science%20eefd0a54ac2b4175b68207e2049e3753/Untitled%208.png)
 
-Warto pamiętać ze jeśli tabele mają takie same nazwy kolumn to Pandas automatycznie doda przyrostki ***_x*** lub ***_y.*** 
+Warto pamiętać ze jeśli tabele mają takie same nazwy kolumn to Pandas automatycznie doda przyrostki **_\_x_** lub **_\_y._**
 
 ```python
 print(wards_census.columns)
@@ -1322,7 +1290,7 @@ print(wards_census.columns)
 # dtype='object')
 ```
 
-Możemy to kontrolować dodając argument `suffixes` do którego będa przypisane wartosci w krotce. W poniższy przypadku będzie to oznaczalo że ***_ward*** zostanie przypisany do kolumn należących wcześniej do pierwszej tabeli a ***_cen*** zostanie przypisany do kolumn należących wcześniej do drugiej tabeli.
+Możemy to kontrolować dodając argument `suffixes` do którego będa przypisane wartosci w krotce. W poniższy przypadku będzie to oznaczalo że **_\_ward_** zostanie przypisany do kolumn należących wcześniej do pierwszej tabeli a **_\_cen_** zostanie przypisany do kolumn należących wcześniej do drugiej tabeli.
 
 ```python
 wards_census = wards.merge(census, on='ward', suffixes=('_ward', '_cen'))
@@ -1358,32 +1326,32 @@ print(taxi_own_veh['fuel_type'].value_counts())
 
 ### Relacje w tabeli
 
-**Relacja jeden do jeden** 
+**Relacja jeden do jeden**
 
-W tej relacji każdy wiersz w lewej tabeli jest powiązany z tylko jednym wierszem w prawej tabeli.  
+W tej relacji każdy wiersz w lewej tabeli jest powiązany z tylko jednym wierszem w prawej tabeli.
 
 **Relacja jeden do wielu**
 
-W tej relacji każdy wiersz po lewej tabeli jest powiazany z jednym lub większą liczbą wierszy w prawej tabeli.  Na przykład w jednym oddziale pracuje wiele firm.  
+W tej relacji każdy wiersz po lewej tabeli jest powiazany z jednym lub większą liczbą wierszy w prawej tabeli. Na przykład w jednym oddziale pracuje wiele firm.
 
 ```python
 ward_licenses = wards.merge(licenses, on='ward', suffixes=('_ward', '_lic'))
 print(ward_licenses.head())
 ```
 
-| ward | alderman | address_ward | zip_ward | account | aid | business | address_lic |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Proco "Joe" ... | 2058 NORTH W... | 60647 | 12024 | nan | DIGILOG ELEC... | 1038 N ASHLA... |
-| 1 | Proco "Joe" ... | 2058 NORTH W... | 60647 | 14446 | 743 | EMPTY BOTTLE... | 1035 N WESTE... |
-| 1 | Proco "Joe" ... | 2058 NORTH W... | 60647 | 14624 | 775 | LITTLE MEL'S... | 2205 N CALIF... |
-| 1 | Proco "Joe" ... | 2058 NORTH W... | 60647 | 14987 | nan | MR. BROWN'S ... | 2301 W CHICA... |
-| 1 | Proco "Joe" ... | 2058 NORTH W... | 60647 | 15642 | 814 | Beat Kitchen | 2000–2100 W ... |
+| ward | alderman        | address_ward    | zip_ward | account | aid | business        | address_lic     |
+| ---- | --------------- | --------------- | -------- | ------- | --- | --------------- | --------------- |
+| 1    | Proco "Joe" ... | 2058 NORTH W... | 60647    | 12024   | nan | DIGILOG ELEC... | 1038 N ASHLA... |
+| 1    | Proco "Joe" ... | 2058 NORTH W... | 60647    | 14446   | 743 | EMPTY BOTTLE... | 1035 N WESTE... |
+| 1    | Proco "Joe" ... | 2058 NORTH W... | 60647    | 14624   | 775 | LITTLE MEL'S... | 2205 N CALIF... |
+| 1    | Proco "Joe" ... | 2058 NORTH W... | 60647    | 14987   | nan | MR. BROWN'S ... | 2301 W CHICA... |
+| 1    | Proco "Joe" ... | 2058 NORTH W... | 60647    | 15642   | 814 | Beat Kitchen    | 2000–2100 W ... |
 
 Dokleić rzeczy z innej części
 
-`merge_asof()`  działa podobnie jak `merge_ordered()` left join.
+`merge_asof()` działa podobnie jak `merge_ordered()` left join.
 
-Dopasowywuje kolumny najbliższej wartości, a nie równe wartości. Wartość ta jest nie większa niz wartość C. Trzeba pamiętać aby kolumny były posortowane. Zastosowanie argumentu `direction=’forward’` spowoduję że wartości przypisane będą więszą lub równe danej wartosci. Natomiast `direction=’nearest’` przypiszę wartośc najbliższą. 
+Dopasowywuje kolumny najbliższej wartości, a nie równe wartości. Wartość ta jest nie większa niz wartość C. Trzeba pamiętać aby kolumny były posortowane. Zastosowanie argumentu `direction=’forward’` spowoduję że wartości przypisane będą więszą lub równe danej wartosci. Natomiast `direction=’nearest’` przypiszę wartośc najbliższą.
 
 ![Untitled](Data%20Science%20eefd0a54ac2b4175b68207e2049e3753/Untitled%209.png)
 
