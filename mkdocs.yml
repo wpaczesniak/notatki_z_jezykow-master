@@ -1,0 +1,35 @@
+site_name: Notatki z języków
+theme:
+  name: material
+  palette: 
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+
+    # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#color-scheme
+
+repo_name: pktiuk/notatki_z_jezykow
+repo_url: https://github.com/pktiuk/notatki_z_jezykow
+
+markdown_extensions:
+  - codehilite
+  - admonition #https://squidfunk.github.io/mkdocs-material/reference/admonitions/?h=collap
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list
+  - pymdownx.emoji: #https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/?h=icon#search add icons
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  # - mdx_truly_sane_lists
