@@ -16,8 +16,8 @@ theme:
 
     # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#color-scheme
 
-repo_name: pktiuk/notatki_z_jezykow
-repo_url: https://github.com/pktiuk/notatki_z_jezykow
+repo_name: wpaczesniak/notatki_z_jezykow-master
+repo_url: https://github.com/wpaczesniak/notatki_z_jezykow-master
 
 markdown_extensions:
   - codehilite
