@@ -1363,15 +1363,161 @@ pd.merge_asof(visa, ibm, on=['date_time'],
 							direction='forward')
 ```
 
-melt()
+### Prawdopodobieństwo
 
-Można także ustawiać nazwy kolumn
+Aby wyciągnąć jedną przykładową daną korzystamy z metody `.sample()`. Działa ona losowo
 
 ```python
+print(sales_counts)
 
+#Output
+#    name  n_sales
+#0   Amir      178
+#1   Brian      128
+#2   Claire       75
+#3   Damian       69
+```
+
+```python
+sales_counts.sample()
+
+#Output
+#   name  n_sales
+#1  Brian      128
+```
+
+```python
+#    name  n_sales
+#2  Claire       75
+```
+
+Jeśli użyliśmy metody `sample()` dany rekordu nie ma już we zbiorze.
+
+Jeśli wybiezrszemy to samo ziarno do generowania liczb losowych otrzymamy te same wyniki.
+
+```python
+np.random.seed(10)
+sales_counts.sample()
+
+#Output
+#    name  n_sales
+#1  Brian      128
+```
+
+Można także podać ilość zwracanych rekordów.
+```python
+sales_counts.sample(2)
+#Output
+#     name    n_sales
+#1   Brian        128
+#2  Claire         75
 ```
 
 
+Można przywrócić starą wersję tabeli, korzystając z parametru `replace = True`. 
+Jest to losowanie ze zwracaniem.
+
 ```python
-print("HOLA")
+sales_counts.sample(5, replace = True)
 ```
+
+Zliczenie wystąpienie każdej wartości w danej tabeli.
+```python
+    amir_deals["product"].value_counts()
+```
+
+Wizualizacja danych na histogramie
+```python
+rolls_10['number'].hist(bins=np.linspace(1,7,7))
+plt.show()
+```
+
+### Distributions Continous
+
+Aby obliczyć prawdopodobieństwo korzystamy z metody `.cdf()`
+```python
+from scipy.stats import uniform
+uniform.cdf(7, 0, 12)
+#0.5833333
+```
+
+`cdf(7, 0, 12)` Oblicza dystrybuantę rozkładu jednostajnego w punkcie 7, dla rozkładu zdefiniowanego od 0 do 12. Oblicza to prawdopodobieństwo że zmienna losowa na przedziale [0, 12] przyjmie wartość mniejszą lub równą 7. 
+
+Jeśli chcemy obliczyć prawdopodobieństwo że liczba będize większa od danej wartości to musimy odjąć od jedności.
+
+```python
+from scipy.stats import uniform
+1 - uniform.cdf(7, 0, 12)
+```
+
+Aby obliczyć przwdopodobieństwo wylosowania między dwoma przedziałami korzystamy z odjęcia większej liczby od mniejszej.
+
+```python
+from scipy.stats import uniform
+uniform.cdf(7, 0, 12) - uniform.cdf(4, 0, 12)
+```
+
+Jeśli chcemy wylosować 10 liczb z przedziału od 0 do 5. 
+
+```python
+from scipy.stats import uniform
+uniform.rvs(0, 5, size=10)
+#Output
+#array([1.89740094, 4.70673196, 0.33224683, 1.0137103 , 2.31641255,       3.49969897, 0.29688598, 0.92057234, 4.71086658, 1.56815855])
+
+```
+
+Możliwe jest zasumulowanie w pythonie rzuceniem monetą.
+
+```python
+binom.rvs(1, 0.5, size=8)
+
+#Output
+#array([0, 1, 1, 0, 1, 0, 1, 1])
+```
+
+Powyższa funkcja symuluje rzut monetą gdzie możlie są dwie możliwości albo będzie 0 albo 1.
+
+
+```python
+from scipy.stats import binom
+binom.rvs(3, 0.5, size=10)
+
+#Output
+#array([0, 3, 2, 1, 3, 0, 2, 2, 0, 0])
+```
+
+Powyższy kod mówi że chce rzucić **10 razy** **trzema** monetami z prawdopodobieństwem sukcesu **50%**.
+
+Jeśli chcemy zmienić pradwopodobieństwo sukcesu(w poniższym przypadku je zmniejszyć do 25%) 
+
+```
+binom.rvs(3, 0.25, size=10)
+```
+
+Prawdopodobieńswo rzucenia 7 orłów na 10 monet można użyć metody `.pmf(7, 10, 0.5)`
+```python
+binom.pmf(7, 10, 0.5)
+
+#Output
+#0.1171875
+```
+
+Aby poznać pradopodobieńswo wyrzucenia 7 lub mniej orłów. 
+
+```python
+binom.cdf(7, 10, 0.5)
+
+#Output
+#0.9453125
+```
+
+Prawdopodobieństwo wyrzucenia 7 lub więcej. Wyliczamy za pomocą poniższego wyrażenia.
+
+```python
+1 - binom.cdf(7, 10, 0.5)
+
+#Output
+#0.0546875
+```
+   
