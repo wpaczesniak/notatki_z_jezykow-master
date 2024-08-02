@@ -1370,3 +1370,8 @@ Można także ustawiać nazwy kolumn
 ```python
 
 ```
+
+
+```python
+print("HOLA")
+```
