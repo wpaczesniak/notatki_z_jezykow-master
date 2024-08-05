@@ -1,5 +1,5 @@
-# Mały zbiór notatek
+# Witaj!!!
 
-Ta strona to jest mój osobisty zbiór różnych notatek.
+Oto mój zbiór notatek, które stworzyłem podczas nauki języków programowania. 
 
-Jej repozytorium znajduje się [tutaj](https://github.com/pktiuk/notatki_z_jezykow), zachęcam do PR-ów (zwłaszcza jak znajdziecie jakieś błędy)
+Repozytorium tej strony znajduję na GitHubie. Jeśli znalazłeś błędy zgłaszaj je śmiało :)
