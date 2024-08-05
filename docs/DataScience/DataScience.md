@@ -1512,7 +1512,7 @@ binom.cdf(7, 10, 0.5)
 #0.9453125
 ```
 
-Prawdopodobieństwo wyrzucenia 7 lub więcej. Wyliczamy za pomocą poniższego wyrażenia.
+Prawdopodobieństwo wyrzucenia więcej niż 7. Wyliczamy za pomocą poniższego wyrażenia.
 
 ```python
 1 - binom.cdf(7, 10, 0.5)
@@ -1521,3 +1521,57 @@ Prawdopodobieństwo wyrzucenia 7 lub więcej. Wyliczamy za pomocą poniższego w
 #0.0546875
 ```
    
+
+### Normalna dystrybuanta
+
+Właściwości
+- Jest symetryczna
+- powierzchnia równa 1
+- nigdy nie dotyka zera
+- służy do określenia średniej i/lub odchylenia standardowego
+- W rozkładzie normalnym 68% danych znajduje sie pomiędzy odchyleniami standardowymi
+- 95% wszystkich danych znajduję się w odległości 2 odchyleń standardowych od środka
+- 99.7% wszystkich danych znajduje się w odległości 3 odchyleń standardowych od średniej
+
+
+**Przykład:**
+Wyświetlenie informacji ile kobiet ma wzrost mniejszy niż oblicza się:
+
+```python
+from scipy.stats import norm
+norm.cdf(154, 161, 7)
+```
+
+Pierwszą liczbą jest żądana liczba którą chcemy wiedzieć ile osób ma mniejszy wzrost niż 154 cm, drugi parametr to średni wzrost, trzeci parametr to wartość odchylenia standardowego.
+
+Żeby obliczyć ile osób ma wzrost powyżej 154 cm oblicza się za pomocą odjęcia od jedności:
+
+```python
+from scipy.stats import norm
+1 - norm.cdf(154, 161, 7)
+```
+
+Żeby obliczyć ile procent kobiet jest w przedziale między 154 a 157 wyznacza się po przez odjęcie od większego zbioru mniejszego czyli odjęcie 154cm od 157cm.
+
+```python
+norm.cdf(157, 161, 7) - norm.cdf(154, 161, 7)
+```
+
+Aby wyznaczyć wzrost mniejszy niż u 90% kobiet. Wyznacza się za pomocą:
+
+```python
+norm.ppf(0.9, 161, 7)
+```
+
+Aby wyznaczyć wzrost większy dla 90% kobiet. Wyznacza się za pomocą:
+
+```python
+norm.ppf((1-0.9), 161, 7)
+```
+
+Wygenerowanie losowych 10 wzrostów wyznacza się za pomocą poniższego kodu:
+```python
+norm.rvs(161, 7, size=10)
+```
+
+Gdzie pierwszy parametr to średni wzrost, drugi parametr o odchylenie standardowe, a trzeci to liczba generowanych wartości.
