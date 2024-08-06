@@ -1365,6 +1365,8 @@ pd.merge_asof(visa, ibm, on=['date_time'],
 
 ### Prawdopodobieństwo
 
+
+
 Aby wyciągnąć jedną przykładową daną korzystamy z metody `.sample()`. Działa ona losowo
 
 ```python
@@ -1495,6 +1497,8 @@ Jeśli chcemy zmienić pradwopodobieństwo sukcesu(w poniższym przypadku je zmn
 binom.rvs(3, 0.25, size=10)
 ```
 
+.pmf() używana jest do obliczenia prawdopodobieństwa wystąpienia konkretnej liczby sukcesów w serii prób Bernulliego
+
 Prawdopodobieńswo rzucenia 7 orłów na 10 monet można użyć metody `.pmf(7, 10, 0.5)`
 ```python
 binom.pmf(7, 10, 0.5)
@@ -1502,6 +1506,7 @@ binom.pmf(7, 10, 0.5)
 #Output
 #0.1171875
 ```
+
 
 Aby poznać pradopodobieńswo wyrzucenia 7 lub mniej orłów. 
 
@@ -1575,3 +1580,105 @@ norm.rvs(161, 7, size=10)
 ```
 
 Gdzie pierwszy parametr to średni wzrost, drugi parametr o odchylenie standardowe, a trzeci to liczba generowanych wartości.
+
+**Centralne twierdzenie graniczne** *(ang. Central limit theorem)*
+
+Rozkład próbkowania będzie się zbliżał do rozkładu normalnego w miarę wzrostu liczby prób. Trzeba pamiętać że ma to zastosowanie wtedy i tylko wtedy gdy próbki są podejmowane losowo i są niezależne.
+
+```python
+sales_team = pd.Series(["Amir", "Brian", "Claire", "Damian"])
+sales_team.sample(10, replace=True)
+
+#array(['Claire', 'Damian', 'Brian', 'Damian', 'Damian', 'Amir', 'Amir', 'Amir',       'Amir', 'Damian'], dtype=object)
+
+#10% wyników to Claire
+
+sales_team.sample(10, replace=True)
+
+#array(['Brian', 'Amir', 'Brian', 'Claire', 'Brian', 'Damian', 'Claire', 'Brian',       'Claire', 'Claire'], dtype=object)
+
+#40% wyników to Claire
+```
+
+![alt text](image.png)
+Wartość prawdopodobienstwa wylosowania *Claire* wynosi 25%. Ma to przełożenie na wykres.
+ 
+
+**Rozkład Poissona**
+
+Proces w którym zdarzenia zachodzą z określoną częstotliwością, ale całkowicie losowo.
+Rozkład Poissona opisuje prawdopodobieństwo wystąpienia pewnej liczby zdarzeń w ustalonym okresie.
+
+Na przykład: 
+Liczba zwierząt adoptowanych co tydzień ze schroniska  
+
+Rozkład Poissona opisuje liczba *lambda*
+
+Liczba lambda opisuje średnią liczbę zdarzen w danym okresie. Wartość ta jest jednocześnie wartością oczekiwaną *(ang. value of the distribution)*
+
+**Rozkład Poissona**
+
+
+Prawdopodobieństwo, że liczba adopcji będzie równa 5 przy średniej tygodniowej średniej liczbie adopcji wynoszącej 8. 
+
+```python
+from scipy.stats import poisson
+poisson.pmf(5, 8)
+#Output
+#0.09160366
+```
+
+Aby obliczyc prawdopodobienstwo że liczba adopcji będzie większa niż 5 przy średniej wynoszącej 8. Oblicza się za pomocą ponizszego wzoru:
+
+```python
+1 - poisson.cdf(5, 8)
+```
+Gdy średnia liczba adopcji ulegnie zwiększeniu to prawdopodobinstwo adopcji w takiej samej wartosci co poprzednio ulegnie zwiększeniu. 
+
+
+Można także wylosować określoną liczbę wartości uwzględniając **rozkład Poissona** 
+
+```python
+from scipy.stats import poisson
+poisson.rvs(8, size=10)
+```
+
+Powyższy przykład przedstawia przypadek gdy wybieramy 10 przykladowych rekordów z rozkładu Poissona gdzie średnia wynosi 8.  
+
+
+**Rozkład wykładniczy**
+
+Reprezentuje prawdopodobienstwo upływu określonego czasu pomiędzy zdarzeniami Poissona. 
+
+Na przkład: Prawdopodobieństwo uplywu więcej niż jednego dnia pomiedzy adopcjami. Rozkład wykładniczy wykorzystuję wartosc lambda ktora określa szybkość. W przeciwieństwie o rozkładu Poissona jest ciągły, ponieważ reprezentuje czas. 
+
+Oczekiwany czas miedzy żadaniami wyznacza się jako 1/(lambda). Umieszcza się go w wyrażeniu który służy do jego liczenia.
+
+
+Czas oczekiwania mniejszy niż minuta wyznacza sie po przez wykorzystanie ponizszego wzoru:
+```python
+from scipy.stats import expon
+expon.cdf(1, scale = 2)
+```
+Gdzie:
+Pierwszy argument to wartość dla ktorej chcemy policzyć prawdopodobienstwo a druga to czas między żądaniami. 
+
+Prawdopodobieństwo oczekiwania wynoszace więcej niz 4 minuty wyznacza się za pomocą:
+```python
+from scipy.stats import expon
+1 - expon.cdf(4, scale = 2)
+```
+
+Prawdopodobienstwo wynoszące między jedną minuta a czterema minutami wyznacza się za pomocą:
+
+```python
+from scipy.stats import expon
+expon.cdf(4, scale = 2) - expon.cdf(1, scale = 2)
+```
+
+**Rozkład t-Studenta**
+Rozkład t-Studenta charakteryzuje się obserwacjami które są oddalone od średniej. Rozkład t ma parametr, który wpływa na grubość ogonów rozkładu. Niższe stopnie swobody powodują grubsze ogony i większe odchylenie standardowe. Wraz ze wzrostem liczby stopni swobody rozkład bardziej przypomina rozkład normalny.
+
+**Rozkład logaryticzno-normalny**
+
+Zmienne które posiadają rozklad logarytmiczno-normalny mają logarytm o rozkładzie normalnym. 
