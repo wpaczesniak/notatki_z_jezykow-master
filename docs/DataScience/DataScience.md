@@ -1682,3 +1682,214 @@ Rozkład t-Studenta charakteryzuje się obserwacjami które są oddalone od śre
 **Rozkład logaryticzno-normalny**
 
 Zmienne które posiadają rozklad logarytmiczno-normalny mają logarytm o rozkładzie normalnym. 
+
+### Korelacja (Miara Pearsona)
+
+Korelacja to badanie zależności między dwiema zmiennymi. Je wartość jest leży pomiędzy-1 do 1. Bada siłę relacji. Minus lub plus oznaczają kierunek zależności. 
+
+Dodatnia wartość korelacji oznacza że jak  wartości osi x rosną to wartości na drugiej osi y też rosną.
+
+Ujemna wartość korelacji oznacza jak wartości na osi x rosną to wartości na osi y maleją.
+
+Wykres przykładowej korelacji:
+
+//TO DO  Wyjaśnić jak to zaszło co to jest **lmplot**
+
+```python
+import seaborn as sns
+sns.lmplot(x="sleep_total", y="sleep_rem", data=msleep, ci=None)
+plt.show()
+```
+
+Wyznaczenie współczynnika korelacji
+
+```python
+msleep['sleep_total'].corr(msleep['sleep_rem'])
+#Output
+#0.751755
+```
+
+Wartości współczynnika korelacji się nie znmieniają.
+```python
+msleep['sleep_rem'].corr(msleep['sleep_total'])
+#Output
+#0.751755
+```
+
+**Logarytmiczna korelacja**
+
+//TO DO dodać screeny z 1:38 z filmiku Correlation caveats.
+
+Liniowa korelacja daje słaby wynik. PAMIĘTAJ zawsze twórz wykres by lepiej można było zobaczyć.
+
+```python
+msleep['bodywt'].corr(msleep['awake'])
+
+#Output
+#0.31
+```
+
+
+
+```python
+msleep['log_bodywt'] = np.log(msleep['bodywt'])
+
+sns.lmplot(x='log_bodywt',
+            y='awake',
+            data=msleep,
+            ci=None)
+
+plt.show()
+
+msleep['log_bodywt'].corr(msleep['awake'])
+
+#Output
+#0.57
+```
+
+Inne przykłady:
+- korelacja kwadratowa,
+- korelacja odwrotnie proporcjonalna **1/x**.
+
+Korelacja nie zawiera związku przyczynowo-skutkowego.
+Oznacza to że wartość osi x nie powodują zmian wartości na osi y.
+
+
+## Seaborn
+Stworzony by ułatwić tworzenie najpopularniejszych wykresów, działa wyjątkowo dobrze ze strukturami danych, zbudowany na bazie Matplotlib. Jednakże Matplotlib nie jest elastyczny.
+
+Alias `sns` skrót wzięto od **S**amuel **N**orman **S**eaborn. Aktora "The West Wing"
+
+Jeśli chcemy wykorzystać Seaborn trzeba importować również matplotlib gdyż na nim został zbudowany. 
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+height = [62, 64, 69, 75, 66, 68, 65, 71, 76, 73]
+
+weight = [120, 136, 148, 175, 137,165, 154, 172, 200, 187]
+
+sns.scatterplot(x=height, y=weight)
+plt.show()
+```
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+gender = ["Female", "Female", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male"]
+
+sns.countplot(x=gender)
+plt.show()
+
+```
+
+Należy pamiętać aby DataFrame był uporządkowany. Nie uporządkowana ramka danych nie będzie działać prawidłowo. 
+
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("masculinity.csv")
+sns.countplot(x="how_masculine",
+               data=df)
+
+plt.show()
+
+```
+
+Można rozróniać kolory punktów ze względu na daną kategorię.
+
+Przed dodaniem kodu który odpowiada za kolor
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.scatterplot(x="total_bill",
+                y="tip",
+                data=tips)
+
+plt.show()
+```
+Po dodaniu parametru `hue` który odpowiada za kolor. Automatycznie dodaje legendę do naszego wykresu. 
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.scatterplot(x="total_bill",
+                y="tip",
+                data=tips,
+                hue="smoker")
+
+plt.show()
+```
+
+Po dodaniu parametru `hue_order`, która pobiera listę wartości i odpowiednio ustawia kolejność wartości na wykresie.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.scatterplot(x="total_bill",
+                y="tip",
+                data=tips,
+                hue="smoker",
+                hue_order=["Yes",
+                            "No"])
+
+plt.show()
+```
+
+Można do używania kolorów wykorzystywać palety kolorów.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+hue_colors = {"Yes" : "black",
+               "No" : "red"}
+
+sns.scatterplot(x="total_bill",
+                y="tip",
+                data=tips,
+                hue="smoker",
+                palette=hue_colors)
+
+plt.show()
+```
+
+Można także używać skrótów a także kodów HTML
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+hue_colors = {"Yes" : "#808080",
+               "No" : "#00FF00"}
+
+sns.scatterplot(x="total_bill",
+                y="tip",
+                data=tips,
+                hue="smoker",
+                palette=hue_colors)
+
+plt.show()
+```
+
+Można wykorzystywać odcień do rozróżnienia kolorów.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.countplot(x="smoker",
+                data=tips,
+                hue="sex")
+
+plt.show()
+```
