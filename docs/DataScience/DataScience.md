@@ -1893,3 +1893,454 @@ sns.countplot(x="smoker",
 
 plt.show()
 ```
+
+`relplot()` umożliwia korzystanie z wykresów punktowych jak i liniowego. Pozwala na tworzenie wielu wykresów na przy użyciu jednego schematu.
+
+Różnice między satterplot() i relplot():
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.scatterplot(x='total_bill',
+                y='tip',
+                data=tips)
+
+plt.show()
+```
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.relplot(x='total_bill',
+                y='tip',
+                data=tips,
+                kind='scatter')
+
+plt.show()
+```
+
+Podsumowywując różnice między to to że w relplot wybieramy sobie rodzaj jaki to ma być wykres. Do wyboru typu wykresu służy `kind`.
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.relplot(x='total_bill',
+                y='tip',
+                data=tips,
+                kind='scatter',
+                col='smoker')
+
+plt.show()
+```
+
+Parametr `col` **NIE** oznacza **koloru** lecz przedstawienie wykresów jeden obok drugiego(kolumnowo) danych które znajdują się w kolumnie `smoker`. Aby przedstawić wykresy jeden pod drugim wykorzystuje się parametr `row`.
+
+Można także wykorzystywać oba te parametry. 
+
+Istnieje możliwość przedstawienia wykresów z wykorzystaniem zawijania *(ang. wrap)*
+
+Zawijanie kolumn
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.relplot(x='total_bill',
+                y='tip',
+                data=tips,
+                kind='scatter',
+                col='day',
+                col_wrap=2)
+
+plt.show()
+```
+
+
+Można także zastosować uporządkowanie wykresów z wykorzystaniem parametru `col_order`. 
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.relplot(x='total_bill',
+                y='tip',
+                data=tips,
+                kind='scatter',
+                col='day',
+                col_wrap=2,
+                col_order=["Thur",
+                           "Fri",
+                           "Sat",
+                           "Sun"])
+
+plt.show()
+```
+Można także wyświetlić z podziałem na kolumny i wiersze
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.relplot(x='total_bill',
+            y='tip',
+            data=tips,
+            kind='scatter',
+            col='smoker',
+            row='time')
+plt.show()
+```
+
+**Rozmiar punktu**
+Do lepszej wizualizacji danych lepiej jest wykorzystywać parametr `size`. 
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.relplot(x='total_bill',
+            y='tip',
+            data=tips,
+            kind='scatter',
+            size='size')
+plt.show()
+```
+
+Można także wykorzystać parametr `hue` który rozróżnia kolorami dane punkty. 
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.relplot(x='total_bill',
+            y='tip',
+            data=tips,
+            kind='scatter',
+            size='size',
+            hue='size')
+plt.show()
+```
+
+Innym przykładem jest wykorzystanie prametru `style` który przedstawia na wykresie różne rodzaje punktów.
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.relplot(x='total_bill',
+            y='tip',
+            data=tips,
+            kind='scatter',
+            hue='smoker',
+            style='smoker')
+plt.show()
+```
+
+Ustawienie przezroczystości punktów. To zastosowanie jest polecane gdy na wykresie jest wiele nakładających się na siebie punktów.
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.relplot(x='total_bill',
+            y='tip',
+            data=tips,
+            kind='scatter',
+            alpha=0.4)
+plt.show()
+```
+
+### Liniowe Wykresy relacyjne
+
+
+W bibliotece seaborna występują dwa typy wykresów relacyjnych:
+
+- wykresy punktowe 
+  Wykres ten zakłada że każdy punkt jest niezależną obserwacją
+- wykresy liniowe
+  Opiera sie na śledzeniu tego samego w czasie
+  
+
+Wykorzystanie wykresu punktowego do wizualizacji średniej godzinnej wartości występowania dwutlenku azotu nie jest odpowiednie.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.relplot(x='hour',
+            y='NO_2_mean',
+            data=air_df_mean,
+            kind='scatter')
+plt.show()
+```
+
+
+Wynika to z faktu że chcemy zwizualizować zmienność w czasie. Dlatego lepszym wyborem jest wykorzystanie wykresu liniowego.
+
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.relplot(x='hour',
+            y='NO_2_mean',
+            data=air_df_mean,
+            kind='line')
+plt.show()
+```
+
+Wykorzystując dane, które uwzględniają dodatkowo miejsce lokalizacji pomiaru (wschód, zachód, północ, południe) w danym mieście. 
+
+Przedstawiamy wykres który tworzy różny kolor liń i ich kształtów dla danego regionu.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.relplot(x='hour',
+            y='NO_2_mean',
+            data=air_df_loc_mean,
+            kind='line',
+            style='location',
+            hue='location')
+plt.show()
+```
+Dodanie parametru `markers` i ustawienie go na True Spowoduje wyświetlenie znacznika punktu dla każdego punktu danych. 
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.relplot(x='hour',
+            y='NO_2_mean',
+            data=air_df_loc_mean,
+            kind='line',
+            style='location',
+            hue='location',
+            markers=True)
+plt.show()
+```
+
+Jeśli nie chcemy aby style lin różniły się od podgrupy to wtedy należy ustawić parametr `dashes` na `False`
+
+Do wizualizacji danych, których jest wiele na każdą godzinę zastosowanie wykresu punktowego `scatter` prowadzi do stworzenia wykresu który jest nie czytelny a punkty zachodzą na siebie. 
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.relplot(x='hour',
+            y='NO_2_mean',
+            data=air_df,
+            kind='scatter'
+            )
+plt.show()
+```
+
+W takich wypadkach należy zastosować wykres liniowy.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.relplot(x='hour',
+            y='NO_2_mean',
+            data=air_df,
+            kind='line'
+            )
+plt.show()
+```
+
+Wykres liniowy zawiera wiele obserwacji na każdą wartość **x**, które zostaną zagregowane w jedną sumarycznę miarę. Domyślnie wyświetlana jest średnia. Biblioteka seaborn automatycznie oblicza przedział ufności dla każdej średniej. Jest nim zacieniowany obszar. Zacieniowany obszar zawiera 95% danych. 
+
+Można rozszerzyć ten obszar wykorzystując parametr `ci` i ustawiając go na `sd`. W tedy na wykresie zostaną przedstawione wszystkie dane. Przedział ufności zostanie zwiększony.
+
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.relplot(x='hour',
+            y='NO_2_mean',
+            data=air_df,
+            kind='line',
+            ci='sd')
+plt.show()
+```
+
+Można go nie umieszczać na wykresie. Wtedy do parametru `ci` przypisujemy wartość `None`.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.relplot(x='hour',
+            y='NO_2_mean',
+            data=air_df,
+            kind='line',
+            ci='None')
+plt.show()
+```
+### Wykresy kategoryczne
+
+
+
+Zalicza się do nich wykresy zliczeniowe i słupkowe. Służą do porównania między różnymi grupami. Wykres zliczający wyświetla liczbę obserwacji w każdej kategorii. 
+
+#### Wykresy zliczeniowe
+
+Do tworzenia różych typów wykresów kategorycznych wykorzystuje się funkcję `catplot`. Podobnie jak `relplot()` wykorzystuje parametry `col=` oraz `row=`
+
+Przykład zastosowania funkcji `countplot()`
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.countplot(x="how_masculine",
+              data=masculinity_data)
+            
+plt.show()            
+```
+
+Zamiast wykorzystywać funkcję `countplot()` wykorzystamy funkcję `catplot()`. Różnią się parametrem `kind`
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.catplot(x="how_masculine",
+              data=masculinity_data,
+              kind="count")
+            
+plt.show()            
+```
+
+Można także uporządkować wykresy według własnego uznania. Robi się to przy pomocy tablicy zawierającej dane rekordy oraz dodaniem do funkcji 
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+category_order = ["No answer",
+                  "Not at all",
+                  "Not very",
+                  "Somewhat",
+                  "Very"]
+
+sns.catplot(x="how_masculine",
+              data=masculinity_data,
+              kind="count",
+              order=category_order)
+            
+plt.show()            
+```
+
+#### Wykresy słupkowe
+
+Wykresy słupkowe pokazują średnią zmniennej ilościowej dla każdej chcianej kategorii.
+
+Podobnie jak w przypadku wykresów zliczeniowych wykorzystuję się funkcję `catplot()`.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.catplot(x="day",
+            y="total_bill",
+            data=tips,
+            kind="bar")
+
+plt.show()
+```
+
+Seaborn automatycznie pokazuje przedziały ufności dla tych średnich. Zawierają one 95% danych. Przedziały te przekazują nam informację o poziomie niepewności jaki jest do tych szacunków.  
+
+Można nie pokazywać tego przedziału ufności. Wykorzystujemy do tego parametr `ci` które ustawiamy na `None`
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.catplot(x="day",
+            y="total_bill",
+            data=tips,
+            kind="bar",
+            ci=None)
+
+plt.show()
+```
+
+Można zmienić orientację. Ustawiamy wtedy zmienna kategoryczną na zmienną `y`. 
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.catplot(y="total_bill",            
+            x="day",
+            data=tips,
+            kind="bar",
+            ci=None)
+
+plt.show()
+```
+
+W praktyce zmienną kategoryczną ( w tym przypadku `day`) umieszczamy na osi `x`
+
+### Wykresy pudełkowe
+
+Przedstawia rozkład danych ilościowych. Pudełko przedstawia dane znajdujące się pomiędzy pierwszym a trzecim kwartylem. Linia po środku przedstawia medianę. Służą do porównywania rozkładu zmniennej `ilościowej` do zmniennej `kategorycznej`.
+
+**Tworzenie wykresu pudełkowego**
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+g = sns.catplot(x="time",
+                y="total_bill",
+                data=tips,
+                kind="box")
+
+plt.show()
+```
+
+Można także wykorzystywać `boxplot()`. Praktyczniej lepiej jest korzystać z funkcji `catplot` ze względu na możliwość wykorzystywania parametrów `col`, `row`.
+
+Można także zmieniać kolejność `boxplot`
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+g = sns.catplot(x="time",
+                y="total_bill",
+                data=tips,
+                kind="box",
+                order=["Dinner",
+                       "Lunch"])
+
+plt.show()
+```
+
+Wykresy pudełkowe mogą zawierać punkty odstające *(ang. outliers)*
+
+Można je pominąć i wogóle ich nie brać pod uwagę. Można to osiągnąć po przez zastosowanie parametru `sym` i przypisaniu do niego wartości `""`.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+g = sns.catplot(x="time",
+                y="total_bill",
+                data=tips,
+                kind="box",
+                sym="")
+
+plt.show()
+```
+
+Rozstęp międzykwartylowy
