@@ -2343,4 +2343,143 @@ g = sns.catplot(x="time",
 plt.show()
 ```
 
-Rozstęp międzykwartylowy
+**Rozstęp międzykwartylowy** **(IQR)** to miejsce pomiędzy pierwszym a trzecim kwartylem.
+
+Punkty odstające pojawiają sie po przekroczeniu 1,5 wartości rozstępu międzykwartylowego. Istnieje możliwość zwiększenia "wąsów" przy wykorzystaniu parametru **whis**. Można modyfikować długość wąsów po przez rozszerzenie przedziału otrzymujemy to po przez **2.0 * IQR** **(whis=2.0)**. Można to także zrobić modyfikując przedział **whis=[5, 96]**.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+g = sns.catplot(x="time",
+                y="total_bill",
+                data=tips,
+                kind="box",
+                whis=[0, 100])
+
+plt.show()
+```
+
+### Point plots
+
+Przedstawiają średnią oraz przedział ufności wynoszący 95%.
+Jest podobny do wykresu liniowego lecz różni się tym że punktowy wykres jest zależny od zmniennej **x**, która jest zmienną **kategoryczną**. Wykres liniowy jest zależny o wartości x które są zmiennymi **ilościowymi**.
+
+**Wykres punktowy pozwala na czytelniejsze porównanie wysokości podgrup na jednym wykresie w porównaniu do  boxplot**.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.catplot(x="age",
+            y="masculinity_important",
+            data=masculinity_data,
+            hue="feel_masculine",
+            kind="point")
+
+plt.show()
+```
+
+Można storzyć wykres, gdzie punkty oznaczające średnie nie mają połączeń między kolejnumi punktami. 
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.catplot(x="age",
+            y="masculinity_important",
+            data=masculinity_data,
+            hue="feel_masculine",
+            kind="point",
+            join=False)
+
+plt.show()
+```
+
+Istnieje możliwość aby punkt na wykresie był medianą. Wykorzystuje sie do tego parametr **estimator** z biblioteki **numpy**.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+from numpy import median
+
+sns.catplot(x="age",
+            y="masculinity_important",
+            data=masculinity_data,
+            kind="point",
+            estimator=median)
+
+plt.show()
+```
+
+**Lepiej jest stosować medianę ze względu na to że jest bardziej odporna na punkty odstające** . 
+
+Można dodać poziome linie na zakończeniu przedziału ufności. Wykorzystuję się do tego parametr **capsize**. 
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.catplot(x="smoker",
+            y="total_bill",
+            data=tips,
+            kind="point",
+            capsize=0.2)
+
+plt.show()
+```
+Isnieje możliwość wyłączenia przedziału ufności.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.catplot(x="smoker",
+            y="total_bill",
+            data=tips,
+            kind="point",
+            ci=None)
+
+plt.show()
+```
+
+### Modyfikacja wyglądu wykresu
+
+W **seaborn** występują pięć różnych rodzai stylów tła background których chcemy wyświetlić: *white, dark, whitegrid,darkgrid, ticks*. Domyślnym kolorem tła jest biały. 
+
+**whitegrid** umożliwia dodanie szarych poziomych linii na wykresie.
+**ticks** dodaje małe kreski na osiach,
+**dark** dodaje szare tlo wykresu
+**darkgrid** dodaje szare tło na wykresie oraz dodaje poziome linie na wykresie, 
+
+Wykorzystuje się do tego metodę **sns.set_style()**
+
+Możliwe jest wykorzystanie **sns.set_palette()** który zmienia kolory,
+
+//TO DO Dodać screena z 2:49 (screen z kolorami) z filmiku Changing plot style and color
+
+**Występują także palety sekwencyjne**, które są domyślne.
+
+Istnieje możliwość tworzenia własnych palet kolorów. Robi się to po przez stworzenie tablicy z nazwami kolorów lub podanie szesnastkowych kodów kolorów. Aby użyć je w wykresie nalezy użyc nazej tablicy jako parametru naszej metody.
+
+**Zmiana skali wykresu:**
+
+Wykonuje się to po przez użycie metody **sns.set_context()**
+Istnieje możliwość zmiany skali **"paper", "notebook", "talk", "poster"**
+
+### Dodanie tytułu i nazw zmiennych
+
+Istnieje zmiany wizualizacji nazw na osiach.
+
+Biblioteka Seaborna dostarcza dwa różne typy obiektów **FacetGrids**, **AxesSubplots**
+
+Aby sprawdzić z jakim typem obiektu mamy doczynienia należy użyć funkcji **type()**
+
+FacetGrids składa się z jednego lub większej liczby AxesSubplots który obsługuje wątki podrzędne, czyli możliwe jest stworzenie wiele rodzai wykresów.
+
+**FacetGrid - relplot(), catplot()
+AxesSubplot - scatterplot(), countplot()**
+
+Aby dodać tytuł do wykresu należy użyć metody **g.fig.suptitle("New Title")**
+
+Można zmienić rozmiar wielkości tytułów. Aby dodać tytuł do wykresu należy użyć metody **fig.suptitle("New Title", y=1.03)**
