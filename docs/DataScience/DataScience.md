@@ -2483,3 +2483,87 @@ AxesSubplot - scatterplot(), countplot()**
 Aby dodać tytuł do wykresu należy użyć metody **g.fig.suptitle("New Title")**
 
 Można zmienić rozmiar wielkości tytułów. Aby dodać tytuł do wykresu należy użyć metody **fig.suptitle("New Title", y=1.03)**
+
+Ustawienie tytułu dla całego wykresu w **FacetGrid** dodaje się przy użyciu metody **g.fig.suptitle("New Title", y=1.03)**
+
+Ustawienie tytułu dla całego wykresu w **AxesSubplot** **g.set_title("New Title", y=1.03")**
+
+```python
+
+g = sns.catplot(x="Region",
+                y="Birthrate",
+                data=gdp_data,
+                kind="box)
+
+g.fig.suptitle("New Title",
+                y=1.03)
+
+```
+
+```python
+
+g = sns.boxplot(x="Region",
+                y="Birthrate",
+                data=gdp_data)
+
+g.set_title("New Title",
+                y=1.03)
+
+```
+
+Dodanie dwóch wykresów koło siebie z podziałem na grupy. Do podziału słuzy parametr **col**.
+
+```python
+
+g = sns.catplot(x="Region",
+                y="Birthrate",
+                data=gdp_data,
+                kind="box",
+                col="Group")
+
+```
+
+Aby dodać podtytuł dla każdego mniejszego wykresu wykorzystuje się metodę **set_titles("This is {col_name}")**
+ Ponadto jeśli ma byc to nazwa wartośści z kolumny to trzeba wykorzystać **col_name **
+
+```python
+
+g = sns.catplot(x="Region",
+                y="Birthrate",
+                data=gdp_data,
+                kind="box",
+                col="Group")
+
+g.fig.suptitle("New Title",
+                y=1.03)
+
+g.set_titles("This is {col_name}")
+```
+
+Do ustawienia nazw osi wykorzystuję się metodę **set()**
+
+```python
+
+g = sns.catplot(x="Region",
+                y="Birthrate",
+                data=gdp_data,
+                kind="box")
+
+g.set(xlabel="New X label",
+      ylabel="New Y label")
+
+plt.show()
+```
+
+Aby obrócić nazwy zmiennych kategorycznych wykorzystujemy metodę **xticks** z parametrem **rotation**.
+
+```python
+
+g = sns.catplot(x="Region",
+                y="Birthrate",
+                data=gdp_data,
+                kind="box")
+
+plt.xticks(rotation=90)
+plt.show()
+```
