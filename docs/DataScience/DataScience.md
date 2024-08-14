@@ -2567,3 +2567,290 @@ g = sns.catplot(x="Region",
 plt.xticks(rotation=90)
 plt.show()
 ```
+
+## Introdution to function in Python
+
+### Definiowanie funkcji bez przyjmowania żadnej wartości oraz bez zwracania żadnej wartości.
+
+```python
+
+def square():
+    new_value = 4 ** 2
+    print(new_value)
+
+square()
+
+```
+
+### Definiowanie funkcji z przyjmowaniem wartości ale bez zwracania wartości.
+
+```python
+
+def square(value):
+    new_value = value ** 2
+    print(new_value)
+
+square(4)
+```
+
+### Definiowanie funkcji z przyjmowaniem wartości oraz zwracająca wartość. 
+
+```python
+def square(value):
+    new_value = value ** 2
+    return new_value
+
+num = square(4)
+
+print(num)
+
+```
+
+Opisywanie funkcji przed ciałem funkcji należy napisać w komentarzu co ta funkcja robi.
+
+```python
+
+def square(value):
+    """Returns the square of a value."""
+    new_value = value ** 2
+    return new_value
+```
+
+Funkcje przyjmujące wiele wartości:
+
+```python
+
+def raise_to_power(value1, value2):
+    """Raise value1 to power of value2."""
+    new_value = value1 ** value2
+    return new_value
+
+
+result = raise_to_power(2, 3)
+
+print(result)
+
+```
+
+Zwracanie wielu zmiennych z funkcji odbywa się przy użyciu krotki.
+
+```python
+
+even_nums = (2, 4, 6)
+
+a, b, c = even_nums
+```
+
+Można uzyskać dostęp do krotki tak jak do listy.
+
+```python
+
+even_nums = (2, 4, 6)
+
+print(even_nums[1])
+```
+
+```python
+second_num = even_nums[1]
+
+print(second_num)
+```
+
+
+```python
+def raise_both(value1, value2):
+    """Raise value1 to the power of value2 and vice versa."""
+
+    new_value1 = value1 ** value2
+    new_value2 = value2 ** value1
+
+    new_tuple = (new_value1, new_value2)
+
+    return new_tuple
+
+result = raise_both(2, 3)
+
+print(result)
+```
+
+### Globalne i lokalne
+Występują trzy rodzaje zmiennych:
+
+- **Globalne zmienne** są zdefiniowane w głównym ciele skryptu,
+- **Lokalne zmienne** są zdefiniowane wewnątrz funkcji,
+- **wbudowane zmienne** jak print, type.
+
+Do wszystkich zmiennych można przypisywać nowe wartości.
+
+```python
+
+def func1():
+    num = 3
+    print(num)
+
+def func2():
+    global num
+    double_num = num * 2
+    num = 6
+    print(double_num)
+
+```
+W powyższych funkcjach używamy zmiennej lokalnej z jednej funkcji, która jest używana jako również lokalna w drugiej funkcji jako zmiennea lokalna.
+
+Python w poszukiwaniu wartości zmiennej przeszukuję najpierw funkcję wewnetrzną, następnie funkcja otaczającą(jesli taka jest) a na końcu przeszukuje zmienne globalne.
+
+#### Zagnieżdzanie funkcji jednej w drugą.
+
+Jeśli w jednej funkcji mamy duzo rzeczy, które się zagnieżdzają to warto wtedy wykorzystać funkcję zagnieżdzoną.
+
+```python
+
+def mod2plus5(x1, x2, x3):
+    """Return the remainder plus 5 of tree values"""
+
+    new_x1 = x1 % 2 + 5
+    new_x2 = x2 % 2 + 5
+    new_x3 = x3 % 2 + 5
+
+    return(new_x1, new_x2, new_x3)
+
+```
+
+Powyższą funkcję możemy zastąpić poniższą funkcją:
+
+```python
+
+def mod2plus5(x1, x2, x3):
+    """Returns the remainder plus 5 of three values."""
+
+    def inner(x):
+        """Returns the remainder plus 5 of value."""
+        return x % 2 + 5
+    
+    return (inner(x1), inner(x2), inner(x3))
+
+print(mod2plus5(1, 2, 3))
+```
+
+```python
+
+def raise_val(n):
+    """Return the inner function."""
+
+    def inner(x):
+    """Raise x to the power of n."""
+        raised = x ** n
+        return raised
+    
+    return inner
+
+square = raise_val(2)
+cube = raise_val(3)
+print(square(2), cube(4))
+
+#Output
+#4 64
+
+
+```
+
+Jeśli chcemy zmienić wartość zmiennej w nie tylko w jednej funkcji wewnętrznej ale także w całym zakresie zarówno w danej funkcji jak i jej otoczeniu poprzedzamy nazwę zmiennej **nonlocal**.
+
+```python
+
+def outer():
+    """Prints the value of n."""
+    n = 1
+
+    def inner():
+        nonlocal n
+        n = 2
+        print(n)
+
+    inner()
+    print(n)
+
+
+outer()
+```
+
+Wartość zmiennej wyszukuję się najpierw we funkcji lokalnej, następnie w funkcji otaczającej, pożniej w zmiennych globalnych a na końcu w zmiennych wbudowanych. Jest to metoda **LEGB** od pierwszych liter:
+
+- **L**ocal scope,
+- **E**nclosing functions
+- **G**lobal
+- **B**uilt-in
+
+
+### Ustawienie domyślnego parametru w funkcji
+
+Definiując argumenty funkcji można odgórnie przypisać jaką wartość ma mieć domyślnie argument.
+
+Można go zmienić w wywołaniu funkcji.
+
+```python
+
+def power(number, pow=1):
+    """Raise number to the power of pow."""
+    new_value = number ** pow
+    return new_value
+
+power(9, 2)
+#81
+
+power(9, 1)
+#9
+
+power(9)
+#9
+
+```
+
+
+Można także używać listy agrumentów (*args) jako argument funkcji.
+
+```python
+
+def add_all(*args):
+    """Sum all values in *args together."""
+
+    # Initialize sum
+    sum_all = 0
+
+    # Accumulate the sum
+    for num in args:
+        sum_all += num
+    
+    return sum_all
+
+add_all(1)
+#1
+
+add_all(1, 2)
+#3
+
+add_all(5, 10, 15, 20)
+#50
+
+```
+
+
+Można także wykorzystywać słowniki jako argumenty funkcji używając do tego argument ****kwargs**
+Słowniki to struktura danych która przechowuje wartości jako **klucz-wartość**
+
+```python
+
+def print_all(**kwargs):
+    """Print out key-value pairs in **kwargs."""
+
+    #Print out the key-value pairs
+    for key, value in kwargs.items():
+        print(key + ": " + value)
+
+print_all(name="dumbledore", job="headmaster")
+
+#Output
+#job: headmaster
+#name: dumbledore
+
+```
