@@ -2854,3 +2854,98 @@ print_all(name="dumbledore", job="headmaster")
 #name: dumbledore
 
 ```
+
+### Funkcje Lambda
+
+Jest to szybszy sposób pisania funkcji. Używa się do tego słowa kluczowego lambda. Jest to szybki sposób pisania funkcji.
+
+Konsktrukcja
+Zapisujemy naszą funkcję i przypisujemy do niej po słowie kluczowym **lambda** dwie nazwy argumentów, po nich stawiamy dwukropek ( : ). Po nich stwiamy wyrażenie określające co funkcja ma zwrócić.  
+
+```python
+
+raise_to_power = lambda x, y: x ** y
+
+raise_to_power(2, 3)
+
+#Output
+#8
+
+```
+
+Nazywamy to wtedy funkcjami anonimowymi
+Sprawdzmy funkcję map, która przyjmuje dwa : funkcję oraz sekwencję taka jak lista. 
+
+// TO DO jak to działa
+
+```python
+
+nums = [48, 6, 9, 21, 1]
+
+square_all = map(lambda num: num ** 2, nums)
+
+print(square_all)
+
+#Output 
+#<map object at 0x103e065c0>
+```
+Jest to w rzeczwistości obiekt mapy.
+
+
+
+```python
+print(list(square_all))
+
+#Output
+#[2304, 36, 81, 441, 1]
+```
+
+//TO Do 
+
+//Dodac opisy z dwóch ostatnich lekcji z kursu  
+Introduction to Functions in Python z rozdziału: 
+**Lambda functions and error-handling** z lekcji Filter(), Reduce().
+
+
+Funkacja może zwracać błąd. Aby wyłapyrać wyjątek należy użyć kombinacji **try & except**.
+
+```python
+
+def sqrt(x):
+    """Return the square root of a number."""
+    try:
+        return x ** 0.5
+    except:
+        print("x must be an int or float")
+
+```
+
+Można także zrobić tak żeby wyłapywała tylko jeden rodzaj błędu.
+
+```python
+
+def sqrt(x):
+    """Return the square root of a number."""
+    try:
+        return x ** 0.5
+    except TypeError:
+        print("x must be an int or float")
+
+```
+
+Jeśli nie chcemy aby funkcja działała dla liczb ujemnych nalezy użyć **if** i dodatkowo użyć słowa kluczowego **raise** co spowoduje przypisanie do wyjątku
+
+```python
+
+def sqrt(x):
+    """Return the square root of a number."""
+    if x < 0:
+        raise ValueError('x must be non-negative')
+    try:
+        return x ** 0.5
+    except TypeError:
+        print("x must be an int or float")
+```
+
+# Introduction to iterators
+
