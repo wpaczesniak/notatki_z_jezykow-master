@@ -2949,3 +2949,267 @@ def sqrt(x):
 
 # Introduction to iterators
 
+
+
+### Playing with iterators
+
+enumerate() - funkcja która przyjmuje dowolny argument iterowalny i zwraca obiekt wyliczeniowy, który składa się z indeksu oraz elementu. 
+
+```python
+
+avengers = ['hawkeye', 'iron man', 'thor', 'quicksilver']
+e = enumerate(avengers)
+print(type(e))
+
+#Output
+#<class 'enumerate'>
+```
+Gdy chcemy zwrócić liste elementów w postaci listy krotek [(index_elementu, element), (index_drugiego_elementu, drugi_element)] to zwrócimy listę krotek.
+
+```python
+e_list = list(e)
+print(e_list)
+
+#Output
+#[(0, 'hawkeye'), (1, 'iron man'), (2, 'thor'), (3, 'quicksilver')]
+
+```
+
+Domyślnym indeksem iteracji jest 0, ale można to zmienić poprzez przypisanie do parametru `start` odpowiedniej wartości,
+
+```python
+avengers = ['hawkeye', 'iron man', 'thor', 'quicksilver']
+for index, value in enumerate(avengers):
+    print(index, value)
+
+#Output
+# 0 hawkeye
+# 1 iron man
+# 2 thor
+# 3 quicksilver
+
+for index, value in enumerate(avengers, start=10):
+    print(index, value)
+
+#Output
+# 10 hawkeye
+# 11 iron man
+# 12 thor
+# 13 quicksilver
+```
+
+Funkcja zip(), który dwie listy umieszcza je w liście krotek i zwraca listę krotek gdzie każda krotka składa się z po jednym elemencie z pierwszej i drugiej listy. 
+
+```python 
+avengers = ['hawkeye', 'iron man', 'thor', 'quicksilver']
+names = ['barton', 'stark', 'odinson', 'maximoff']
+z = zip(avengers, names)
+print(type(z))
+
+#Outout
+#<class 'zip'>
+
+z_list = list(z)
+print(z_list)
+
+#Output
+#[('hawkeye', 'barton'), ('iron man', 'stark'), ('thor', 'odinson'), ('quicksilver', 'maximoff')]
+```
+
+Zamiast tworzyć liste możemy stworzyć pętle
+```python
+avengers = ['hawkeye', 'iron man', 'thor', 'quicksilver']
+names = ['barton', 'stark', 'odinson', 'maximoff']
+for z1, z2 in zip(avengers, names):
+    print(z1, z2)
+
+#Output
+# hawkeye barton 
+# iron man stark 
+# thor odinson 
+# quicksilver maximoff 
+
+```
+
+Można także użyć operatora **splat** do wydrukowania wszystkich elementów
+```python
+
+names = ['barton', 'stark', 'odinson', 'maximoff']
+z = zip(avengers, names):
+print(*z)
+
+```
+
+### Using iterators to load large files into memory
+
+Jeśli danych jest bardzo dużo można je ładować fragmentami przy wykorzystaniu funkcji `read_csv` przy użyciu parametru chunksize, którego wartość ustawiamy na tyle fragmentów ile chcemy załadować. Jeśli mamy plik CSV z kolumną "x" zawierającą liczbę i chcemy obliczyć sumę wszystkich liczb w tej kolumnie, Ale plik jest za duży by przechować go w pamięci. 
+
+Wykorzystanie chunksize spowoduje że każdy gragment będzie ramka danych (Data Frame). Do **listy** `result` zapisywane są polejne rekordy. 
+
+```python
+
+import pandas as pd
+result = []
+for chunk in pd.read_csv('data.csv', chunksize=1000):
+    result.append(sum(chunk['x']))
+total = sum(result)
+print(total)
+
+#Output
+# 4252532
+```
+
+Nie musimy tworzyć osobnej listy wystarczy że na początku zainicjalizujemy jakąś zmienną na 0.
+
+```python
+import pandas as pd
+total = 0
+for chunk in pd.read_csv('data_csv', chunksize=1000):
+    total += sum(chunk['x'])
+print(total)
+
+#Output
+# 4252532
+```
+
+### List comprehensions and generators
+
+W tym rozdziale zajmiemy się zastąpieniem zapełnieniem listy przy użyciu pętli for, gdyż są nieefektywne obliczeniowo. Można to zrobić w jednym wierszu kodu. 
+
+```python
+nums = [12, 8, 21, 3, 16]
+new_nums = []
+for num in nums:
+    new_nums.append(num + 1)
+print(new_nums)
+
+#Output
+#[13, 9, 22, 4, 17]
+```
+
+Zamiast tego można skożystać z wyrażeń listowych. 
+Składnia: w nawiasach kwadratowych wpisujemy wartosci które chcesz utworzyć inaczej zwane wyrażeniami wyjściowymi, po którym następuje wykonanie pętli for, która się pożniej do niej odwołuje.
+
+```python
+nums = [12, 8, 21, 3, 16]
+new_nums = [num + 1 for num in nums]
+print(new_nums)
+
+#Output
+#[13, 9, 22, 4, 17]
+```
+
+Można stworzyć wyrażenie listowe przy użyciu obiektu zakresu.
+
+```python
+result = [num for num in range(11)]
+print(result)
+
+#Output
+#[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
+Można wykorzystywać wyrażeń listowych do zastępowania dwóch pętli.
+
+```python
+pairs_1 = []
+for num1 in range(0, 2):
+    for num2 in range(6, 8):
+        pairs_1.append((num1, num2))
+print(pairs_1)
+
+#Output
+#[(0, 6), (0, 7), (1, 6), (1, 7)]
+```
+
+Powyższy kod można zastąpić wyrażeniem listowym
+
+```python
+pairs_2 = [(num1, num2) for num1 in range(0, 2) for num2 in range(6, 8)]
+print(pairs_2)
+
+#Output
+#[(0, 6), (0, 7), (1, 6), (1, 7)]
+```
+
+Istnieje możliwość dodania *wyrażenia warunkowego* - **if**.
+
+```python 
+[num ** 2 for num in range(10) if num % 2 == 0]
+
+#Output
+# [0, 4, 16, 36, 64]
+```
+Listę można uzależnić od wyrażenia wyjściowego.
+
+```python
+[num ** 2 if num % 2 == 0 else 0 for num in range(10)]
+
+#Output
+# [0, 0, 4, 0, 16, 0, 36, 0, 64, 0]
+```
+
+Możemy także pisać wyrażenia listowe tworzące **słowniki** z elementów iteracyjnych. Różnicą jest to że używamy nawiasów klamrowych zamist kwadratowych.
+
+```python
+
+pos_neg = {num: -num for num in range(9)}
+print(pos_neg)
+
+#Output
+#{0: 0, 1: -1, 2: -2, 3: -3, 4: -4, 5: -5, 6: -6, 7: -7, 8: -8}
+
+print(type(pos_neg))
+#Output
+#<class 'dict'>
+
+```
+
+Generatory jest obiektem który nie tworzy listy ale można po nim iterować
+
+```python
+result = (num for num in range(6))
+for num in result:
+    print(num)
+
+#Output
+# 0
+# 1
+# 2
+# 3
+# 4
+# 5
+```
+
+Można przekazać generator do listy aby utworzyc listę.
+
+```python 
+result = (num for num in range(6))
+print(list(result))
+```
+
+Można iterować generator jeden po drugim
+
+```python
+result = (num for num in range(6))
+
+print(next(result))
+# 0
+
+print(next(result))
+# 1
+```
+W tym wypadku wartość jest wyciągana tylko wtedy gdy jest potrzebna. Nazywa się oceną leniwą, której wartość wyrażenia jest opóżniona. Może to bardzo pomóc podczas pracy z bardzo duzymi sekwencjami danych ponieważ umożliwia generowanie elementy sekwencji w locie. 
+
+Na generatorach można wykonywać te same operacje co na listach.
+
+Funkcje generatora, które po wywołaniu tworzą obiekty generatora. Są pisane ze składnią dowolnie innej funkcji zdefiniowanj przez użytkownika lecz zamiast zwracania wartości za pomocą slowa kluczowego return zwracają sekwencje wartości przy użyciu słowa kluczowego yield.
+
+```python
+def num_sequence(n):
+    """Generate values from 0 to n."""
+    i = 0
+    while i < n:
+        yield i
+        i += 1
+```
