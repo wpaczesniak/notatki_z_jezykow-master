@@ -2947,7 +2947,7 @@ def sqrt(x):
         print("x must be an int or float")
 ```
 
-# Introduction to iterators
+## Introduction to iterators
 
 
 
@@ -3212,4 +3212,703 @@ def num_sequence(n):
     while i < n:
         yield i
         i += 1
+```
+
+
+## Exploratory Data Analysis in Python
+
+### Getting to Know a Dataset
+
+Aby wczytać plik używamy metody `read_csv` dostępnej w bibliotece Pandas. Wczytanie pierwszych rekordów (domyślnie 5) odbywa się przez wykorzystanie metody `head()`
+
+```python
+
+books = pd.read_csv("book.csv")
+books.head()
+```
+
+|                          name |                   author |  rating | year |       genre |
+|-------------------------------|--------------------------|---------|------|-------------|
+| 10-Day Green Smoothie Cleanse |                 JJ Smith |    4.73 | 2016 | Non Fiction |
+|             11/22/63: A Novel |             Stephen King |    4.62 | 2011 |     Fiction |
+|             12 Rules for Life |       Jordan B. Peterson |    4.69 | 2018 | Non Fiction |
+|        1984 (Signet Classics) |            George Orwell |    4.73 | 2017 |     Fiction |
+|          5,000 Awesome Facts  | National Geographic Kids |    4.81 | 2019 |   Childrens |
+
+Żeby wyświetlić informację o danych wykorzystujemy metodę `info()`. Jakiego są typu, ile ich jest, czy są wartości null, jakie są nazwy kolumn i ile jest rekordów w każdej kolumnie
+
+``` python
+
+books.info()
+
+#<class 'pandas.core.frame.DataFrame'>
+#RangeIndex: 350 entries, 0 to 349
+#Data columns (total 5 columns):
+#  #     Column  Non-Null Count     Dtype 
+# --     ------  --------------     -----  
+#  0       name    350 non-null    object
+#  1     author    350 non-null    object 
+#  2     rating    350 non-null    float64
+#  3       year    350 non-null    int64  
+#  4      genre    350 non-null    object 
+# dtypes: float64(1), int64(1), object(3)
+# memory usage: 13.8+ KB
+```
+
+Aby zliczyć ile jest rekordów w danej kolumnie używamy metody `value_counts`.
+
+```python
+books.value_counts("genre")
+
+#genre
+#Non Fiction    179
+#Fiction        131
+#Childrens       40
+#dtype: int64
+
+
+```
+
+Aby wyświetlić informacje dotyczące opisu danych liczbowych wykorzystujemy metodę `describe()`.
+
+
+```python
+books.describe()
+
+#           rating        year
+#count      350.000000    350.000000
+#mean       4.608571      2013.508571
+#std        0.226941      3.284711
+#min        3.300000      2009.000000
+#25%        4.500000      2010.000000
+#50%        4.600000      2013.000000
+#75%        4.800000      2016.000000
+#max        4.900000      2019.000000
+
+```
+
+Do wizualizacji danych można wykorzytać histogram.
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.histplot(data=books, x='rating')
+plt.show()
+```
+
+Aby wyświetlić dane w nieco uporządkowany sposób może posłużyć parametr `binwidth`. Porządkuje on dane tak by wyświetlały się co zadany przedział.
+
+```python
+sns.histplot(data=books, x='rating', binwidth=.1)
+```
+
+
+Aby sprawdzić jakiego typu są dane w kolumnach używamy metody `info()` lub `dtypes`.
+
+
+Aby zmienić wartości w kolumnie wykorzystujemy metodę `astype()` Dostępne są następujące modywfikacje:
+- String `str`
+- Integer `int`
+- Float `float`
+- Dictionary `dict`
+- List `list`
+- Boolean `bool`
+
+
+```python
+books["year"] = books["year"].astype(int)
+books.dtypes
+```
+
+Aby sprawdzić czy znajdują się wybrane dane kategoryczne wykorzystujemy metodę `isin()`. Zwraca ona wartość logiczną. Jeśli dana kategoryczna znajduję się w danej kolumnie to zwraca `True` jeśli jej nie ma to zwraca `False`.
+
+```python
+
+books["genre"].isin(["Fiction", "Non Fiction"])
+```
+
+Można wyświetlić negację poprzez poprzedzenie powyższego wyrażenia tyldą `~`.
+
+```python
+
+books["genre"].isin(["Fiction", "Non Fiction"])
+```
+
+Wyświetlenie tylko tych rekordów które spełniają założenie.
+
+```python
+books[books["genre"].isin(["Fiction", "Non Fiction"])].head()
+```
+
+Wyświetlenie tylko tych rekordów któey mają ten sam typ co dana kolumna.
+
+```python
+
+books.select_dtypes("number").head()
+```
+
+Wyświetlenie wartości minimalnej przy użyciu metody `min()`
+
+```python
+books["year"].min()
+
+# Output
+# 2009
+```
+
+Wyświetlenie wartości maksymalnej przy użyciu metody `max()`
+
+```python
+books["year"].max()
+
+# Output
+# 2019
+```
+
+Dane można grupować po zmiennych kategorycznych występujących w danej kolumnie przy użyciu metody `groupby()`.
+
+```python
+books.groupby("genre").mean()
+```
+
+
+Agregacja danych
+Wykorzystuje się do tego metodę `agg()` w której umieszczamy funkcje gregujące takie jak:
+
+- sum `sum()`
+- count `count()`
+- minimum `min()`
+- maximum `max()`
+- variance `var()`
+- Standard deviation `std()`
+
+
+```python
+books.agg(["mean", "std"])
+```
+
+Można agregować wybrane kolumny przy użyciu jednych funkcji agregujących oraz inne kolumny przy wykorzystaniu innych funkcji agregujących.
+
+```python
+books.agg({"rating": ["mean", "std"], "year": ["median"]})
+```
+
+Można jednocześnie grupować oraz agregować dane.
+
+```python
+books.groupby("genre").agg(
+    mean_rating=("rating", "mean"),
+    std_rating=("rating", "std"),
+    median_year=("year", "median")
+)
+```
+
+
+Można przedstawić wizualizacje danych kategorycznych przy wykorzystaniu wykresu kolumnowego:
+
+```python
+sns.barplot(data=books, x='genre', y="rating")
+plt.show()
+```
+
+
+### Addressing missing data
+
+Aby zsumować ilość brakujących danych używamy metodę `sum()`
+
+```python
+print(salaries.isna().sum())
+```
+
+Aby usunąć brakujące wiersze wykorzystuje się metodę `dropna`
+
+W poniższym usuwamy dane w kolumnach w których liczba brakujących danych nie przekracza 5%.
+
+```python
+threshold = len(salaries) * 0.05
+print(threshold)
+
+cols_to_drop = salaries.columns[salaries.isna().sum() <= threshold]
+print(col_to_drop)
+
+salaries.dropna(subset=cols_to_drop, inplace=True)
+```
+
+Parametr `subset` określe z jakich kolumn mają być usuwane wiersze/
+Parametr `inplace=True` powoduje że zmiany zostaną dokonane bezpośrednio na obiekcie `salaries`, bez konieczności przypisywania wyniku do nowej zmiennej. 
+
+```python
+cols_with_missing_values = salaries.columns[salaries.isna().sum() > 0]
+print(cols_with_missing_values)
+
+for col in cols_with_missing_values[:-1]:
+    salaries[col].fillna(salaries[col].mode()[0])
+```
+
+Powyższa pętla iteruje przez każdą kolumnę z wyłączeniem ostatniej kolumny. `salaries[col].fillna(salaries[col].mode()[0])`. metoda `fillna` uzupełnia brakujące wartości w kolumnie `col` wartością mody `mode()[0]`. Indeks `[0]` oznacza że to jest pierwsza najczęściej występująca wartość. (najczęściej występująca wartość dla danej kolumny)
+
+
+Poniższy kod grupuje według wartości w kolumnie `Experience` a następnię kolumna `Salary_USD` brana jest do dalszych analiz i wyliczane jest mediana, a na końcu zapisujemy to do słownika. 
+
+```python
+salaries_dict = salaries.groupby("Experience")["Salary_USD"].median().to_dict()
+print(salaries_dict)
+```
+
+Można także brakujące dane uzupełniać po przez mapowanie przy wykorzystaniu słownika.
+
+```python
+salaries["Salary_USD"] = salaries["Salary_USD"].fillna(salaries["Experience"].map(salaries_dict))
+```
+
+Metoda `nunique()` Zlicza ile jest unikalnych stanowisk. 
+
+```python
+print(salaries["Designation"].nunique())
+```
+
+Metoda `str.contains` przeszukuje kolumnę pod kątem określonego ciągu.
+
+```python
+salaries["Designation"].str.contains("Scientist")
+```
+
+Aby wyszukać dane z wybranej kolumny  które zaczynają się od frazy wykorzystujemy znak `^`.
+
+```python
+salaries["Designation"].str.contains("^Data")
+```
+
+```python
+job_categories = ["Data Science", "Data Analytics",
+                  "Data Engineering", "Machine Learning",
+                  "Managerial", "Consultant"]
+
+data_science = "Data Scientist|NLP"
+data_analyst = "Analyst|Analytics"
+data_engineer = "Data Engineer|ETL|Architect|Infrastructure"
+ml_engineer = "Machine Learning|ML|Big Data|AI"
+manager = "Manager|Head|Director|Lead|Principal|Staff"
+consultant = "Consultant|Freelance"
+
+conditions = [
+    (salaries["Designation"].str.contains(data_science)),
+    (salaries["Designation"].str.contains(data_analyst)),
+    (salaries["Designation"].str.contains(data_engineer)),    
+    (salaries["Designation"].str.contains(ml_engineer)),    
+    (salaries["Designation"].str.contains(manager)),    
+    (salaries["Designation"].str.contains(consultant))
+]
+
+salaries["Job_Category"] = np.select(conditions,
+                                     job_categories,
+                                     default="Other")
+
+print(salaries[["Designation", "Job_Category"]].head())
+
+#                     Designation           Job_Category
+# 0                Data Scientist           Data Science
+# 1    Machine Learning Scientist       Machine Learning
+# 2             Big Data Engineer       Data Engineering
+# 3          Product Data Analyst         Data Analytics
+# 4     Machine Learning Engineer       Machine Learning
+
+sns.countplot(data=salaries, x="Job_Category")
+plt.show()
+
+```
+Dane które są obiektami można przekonwertować na dowolny typ.
+Najpierw trzeba usunąć przecinki jako seperatory tysięcy, następnie float który zmieni typ danych. Stworzenie nowej kolumny do konwersji danych. 
+
+Aby zastąpić jakiś znak jakimś innym wykorzystujemy metodę `str.replace()`
+```python
+pd.Series.str.replace("znak do usunięcia", "znak który służy do zastąpienia")
+```
+
+Na przykład:
+Zastępujemy przecinek i niczym go niezastępujemy.
+
+```python
+salaries["Salary_In_Rupees"] = salaries["Salary_In_Rupees"].str.replace(",", "")
+```
+Aby przekonwertować dane używamy metody `astype()`
+
+```python
+salaries["Salary_In_Rupees"] = salaries["Salary_In_Rupees"].astype(float)
+```
+Wiedząc że Rupee to 0,012 dolara amerykańskiego
+
+```python
+salaries["Salary_In_Rupees"] = salaries["Salary_In_Rupees"] * 0.012
+```
+
+Aby po grupowac dane po wartościach w kolumne Company_Size tak by zawierały średnie zarobki w dolarach używamy poniższego przykładu:
+
+```python
+salaries.groupby("Company_Size")["Salary_USD"].mean()
+```
+
+Zamiast tworzyć nową tabelę jak w przypadku powyższym lepiej jest stworzyć kolumnę która będzie wyliczała odchylenie standardowe od wynagrodzeń na podstawie doświadczenia.
+
+```python
+salaries["std_dev"] = salaries.groupby("Experience")["Salary_USD"].transform(lambda x: x.std())
+```
+
+Aby zliczyc ile jest poszczególnych przypadków korzystamy z metody `value_counts()`
+
+```python
+print(salaries[["Experience", "std_dev"]].value_counts())
+```
+
+Aby stworzyć kolumnę w której będą przechowywane mediany wynagrodzeń na podstawie wielkości firmy. Robimy to przy wykorzystaniu poniższego wyrażenia.
+
+```python
+salaries["median_by_comp_size"] = salaries.groupby("Company_Size")["Salary_USD"].transform(lambda x: x.median())
+```
+
+Punkty Odstające górne pojawiają się dla wartości wiekszej niż 1,5 odstępu między kwartylnego (**IQR**) ponad trzeci kwartyl.
+
+IQR = 75th - 25th percentile
+Upper Outliers > 75th percentile + (1.5 * IQR)
+
+Punkty odstające dolene pojawiają sie dla wartości mniejszej niż 1.5 odstępu między kwartylnego (**IQR**) poniżej pierwszego kwartylu.
+
+IQR = 75th - 25th percentile
+Lower Outliers < 25th percentile - (1.5 * IQR)
+
+```python
+seventy_fifth = salaries["Salary_USD"].quantile(0.75)
+twenty_fifth = salaries["Salary_USD"].quantile(0.25)
+salaries_iqr = seventy_fifth - twenty_fifth
+
+print(salaries_iqr)
+```
+
+Aby obliczyc skrajne wartości po których przekroczeniu pojawiają się punkty odstające. Korzystamy z powyższych obliczeń.
+
+```python
+upper = seventy_fifth + (1.5 * salaries_iqr)
+lower = twenty_fifth - (1.5 * salaries_iqr)
+
+print(upper, lower)
+```
+
+Aby wyświetlić dane dla których wartości są odstające korzystamy z poniższego kodu:
+
+```python
+salaries[(salaries["Salary_USD"] < lower) | (salaries["Salary_USD"] > upper)][["Experience", "Employee_Location", "Salary_USD"]]
+```
+
+Możemy odfiltrować punkty odstające
+
+```python
+no_outliers = salaries[(salaries["Salary_USD"] > lower) & (salaries["Salary_USD"] < upper>)]
+
+print(no_outliers["Salary_USD"].describe())
+```
+
+### Relationships in Data
+
+### Data Miesiące dzień
+
+W większości przypadków podczas importu danych dane dotyczące dat i godzin są typami `object`.
+
+```python
+divorce = pd.read_csv("divorce.csv")
+divorce.head()
+
+divorce.dtypes
+```
+
+Można naprawic tak by odrazu dane były czytane jako daty używając parametru `parse_dates`
+
+```python
+
+divorce = pd.read_csv("divorce.csv", parse_dates=["marriage_date"])
+divorce.dtypes
+```
+
+Można także zmienić typ danych po zaimportowaniu danych.
+
+```python
+divorce["marriage_date"] = pd.to_datetime(divorce["marriage_date"])
+divorce.dtypes
+```
+
+Jeśli data jest przechowywana w trzech róznych kolumnach takich jak miesiąc dzień rok to mozna to zapisać we wspólnej kolumnie.
+
+```python
+divorce["marriage_date"] = pd.to_datetime(divorce[["month", "day", "year"]])
+```
+
+Można wyłuskać same miesiące z daty przy wykorzystaniu parametru `dt.month`
+
+```python
+divorce["marriage_month"] = divorce["marriage_date"].dt.month
+divorce.head()
+```
+
+Można stworzyć wykres zależności miedzy długością małżeństwa a miesiącem gdy wzięto ślub.
+
+```python
+sns.lineplot(data=divorce, x="marriage_month", y="marriage_duration")
+plt.show()
+```
+
+Korelacja opisuje kierunek zależności między dwiema zmiennymi oraz jej wartość(siłę)
+
+```python
+divorce.corr()
+```
+
+**Heatmapa**
+
+Określa szybka wizualizacje interpretacji korelacji. 
+
+//TO DO
+Wyjaśnij co znaczy parametr `annot`
+
+```python
+sns.heatmap(divorce.corr(), annot=True)
+plt.show()
+```
+
+Powyższa korelacja jest liniowa.
+
+Możliwe są korelacja super-liniowe (O(n log n)) lub kwadratowe.
+
+Dlatego należy wzbogacać nasze wykresy korelacji wykresami punktowymi. 
+
+Poniżej przedstawiono wykres korelacji zarobków miesięcznych kobiet i mężczyzn w chwili rozwodu
+
+```python
+sns.scatterplot(data=divorce, x="income_man", y="income_woman")
+plt.show()
+```
+
+// TO DO    Dodać wykres punktowy
+
+Po tej wizualizacji widać że związek istnieje, ale nie jest szczególnie silny tak jak to sugerowała nasza mapa popularności.
+
+Aby zobaczyć wykres wszystkich relacji między zmiennymi numerycznymi umozliwia metoda `pairplot`
+
+```python
+sns.pairplot(data=divorce)
+plt.show()
+```
+
+Można także ograniczyć liczbę wyświetlonych relacji, ustawiając parametr `vars`.
+
+```python
+sns.pairplot(data=divorce, vars=["income_man", "income_woman", "marriage_duration"])
+plt.show()
+```
+
+### Związki między zmiennymi kategorycznymi
+
+```python
+divorce["education_man"].value_counts()
+```
+
+Należy dokonac wizualizacji by zobaczyć powiązania miedzy liczbą małzeństwa a długością małżeństwa.
+
+```python
+sns.histplot(data=divorce, x="marriage_duration", binwidth=1)
+plt.show()
+```
+
+Aby przedstawić związek (liczbę) między długością małżeństwa w odniesieniu do poziomu wykształcenia mężczyzny.
+
+```python
+sns.histplot(data=divorce, x="marriage_duration", hue="education_man", binwidth=1)
+plt.show()
+```
+
+Związek między długością trwania małżeństwa a poziomem wykształcenia nie jest do końca jasny. Wykresy te rozwiązują wykresy Kernel Density Estimate (**KDE**) dostępne w bibliotece Seaborn.
+
+```python
+sns.kdeplot(data=divorce, x="marriage_duration", hue="education_man")
+plt.show()
+```
+
+// TO DO 
+
+W porównaniu do histogramów środowisko KDE uważa się za bardziej zrozumiałe, zwłaszcza gdy pokazuje wiele dystrybucji. Nalezy zauważyć, że lokalizacja szczytowego czasu trwania małżeństwa dla każdego poziomu męskiego jest bardziej widoczna niz na histogramie.
+
+Można wyłączyć algorytm wygładzenia bo to on psuje poprawny odbiór wykresu.
+
+Algorytm ten może powodować że długość niektórych małżeństw może być krótsza od zera. 
+
+Można to zmienić i pominąć algorytm wygładaający po przez zastosowanie parametru `cut`. Parametr `cut` przekazuje informację jak daleko poza minimalne i maksymalne dane powinna sięgać krzywa podczas stosowania wygładzenia.
+
+```python
+sns.kdeplot(data=divorce, x="marriage_duration", hue="education_man", cut=0)
+plt.show()
+```
+
+//TO DO 
+DOdac ten wykres
+
+Wykres ten przedstawia tylko te małżeństwa trwające conajmniej jeden rok.
+
+Jeżeli interesuje nas funkcja rozkładu kumulatywnego można ustawić parametr `cumulative`
+
+```python
+sns.kdeplot(data=divorce, x="marriage_duration", hue="education_man", cut=0, cumulative=True)
+plt.show()
+```
+
+Wykres ten przedstawia prawdopodobiństwo że czas trwania małżeństwa będzie krótszy niż dany okres.
+
+Możemy stworzyć przybliżony wiek zawarcia małżeństwa kobiet i mężczyzn.
+
+```python
+divorce["man_age_marriage"] = divorce["marriage_year"] - divorce["dob_man"].dt.year
+divorce["woman_age_marriage"] = divorce["marriage_year"] - divorce["dob_woman"].dt.year
+```
+
+Przedstawiono wykres punktowy na wykresie punktowym.
+
+```python
+sns.scatterplot(data=divorce, x="woman_age_marriage", y="man_age_marriage)
+
+plt.show()
+```
+
+Przedstawiając dane na wykresie punktowym kolorujące punkty po poziomie wykształcenia przedstawia wykres poniższy:
+
+```python
+sns.scatterplot(data=divorce,
+                x="woman_age_marriage",
+                y="man_age_marriage",
+                hue="education_man")
+
+plt.show()
+```
+
+
+Można określić jaka częścią całości jest dana kategorii.
+Pozwala to określić czy dany zbiór jest reprezentacyjny dla całej populacji. 
+```python
+planes["Destination"].value_counts(normalize=True)
+```
+
+Inną metodą na zwerfikowanie częstość kombinacji klas są tabele krzyżowa. W naszym przypadku to częstotliwość tras lotów.
+
+Następnie wybieramy kolumnę, która ma być używana jako indeks dla tabeli 
+```python
+
+pd.crosstab(planes["Source"], planes["Destination"])
+```
+Można zastosować dodatkowo funkcje agregujące. W poniższym przypadku jest to mediana cen dla danego kierunku
+
+```python
+pd.crosstab(planes["Source"], planes["Destination"],
+            values=planes["Price"], aggfunc="median")
+```
+
+Jeśli mam dane dotyczące liczbę przystanków wyrażona jako
+"1 przystanek"(1 stop), "2 przystanki"(2 stops), "3 przystanki"(3 stops)
+
+```python
+print(planes["Total_Stops"].value_counts())
+
+planes["Total_Stops"] = planes["Total_Stops"].str.replace(" stops", "")
+
+planes["Total_Stops"] = planes["Total_Stops"].str.replace(" stop", "")
+
+planes["Total_Stops"] = planes["Total_Stops"].str.replace(" non-stop", "0")
+
+planes["Total_Stops"] = planes["Total_Stops"].astype(int)
+```
+
+Aby zobaczyć jak ceny się zmieniają w ciagu miesięcy oraz jak to wygląda w tygodniu.
+
+```python
+planes["month"] = planes["Date_of_Journey"].dt.month
+planes["weekday"] = planes["Date_of_Journey"].dt.weekday
+print(planes[["month", "weekday", "Date_of_Journey"]].head())
+```
+
+Można także wyodrębnić godzinę odlotu i przylotu
+
+```python
+planes["Dep_Hour"] = planes["Dep_Time"].dt.hour
+planes["Arrival_Hour"] = planes["Arrival_Time"].dt.hour
+```
+Można także grupować dane liczbowe i oznaczać je jako klasy. Czyli stworzenie nowej kolumny która będzie zawierała opis dla danej liczby przypisując jej wartość kategoryczną.
+
+```python
+twenty_fifth = planes["Price"].quantile(0.25)
+median = planes["Price"].median()
+seventy_fifth = planes["Price"].quantile(0.75)
+maximum = planes["Price"].max()
+```
+Następnie tworzymy listę kategorii, a następnie tworzymy zbiór zakresów dla których przypisana zostanie odpowiednia wartość kategorii.
+
+```python
+labels = ["Economy", "Premium Economy", "Business Class", "First Class"]
+bins = [0, twenty_fifth, median, seventy_fifth, maximum]
+```
+
+Do przypisania nowej kategorii z wcześniej utworzonej listy sluży metoda `cut`
+
+```python
+planes["Price_Category"] = pd.cut(planes["Price"],
+                                  labels=labels,
+                                  bins=bins)
+```
+
+Możemy teraz stworzyc wykres kategorii lotów w odniesieniu do lin lotniczych.
+
+```python
+sns.countplot(data=planes, x="Airline", hue="Price_Category")
+plt.show()
+```
+
+## Working with Categorical Data in Python
+
+Zmienna jest zmienną kategoryczną o ile zawiera skończoną liczbę odrębnych grup lub kategorii. W badaniach naukowych zwana również danymi jakościowymi. 
+
+Dane kategoryczne można podzielić na trzy typy:
+porządkowe i nominalne. 
+
+Jeśli zmnienna kategoryczna ma naturalną kolejność rang naprzykład stopnie wojskowe to można ją uznać za zmieną kategoryczną porządkową. 
+
+Zmienna kategoryczna nominalna to takie dane których nie można umieścić w porządku naturalnym np. ulubione kolory
+
+Jeśli kolumny ramki danych po wykorzystaniu metody `.info()` prezentują dane w kolumnie jako `object` to najprawdopodobniej oznacza że mamy doczynienia ze zmienną kategoryczną. 
+
+Aby otrzymać jeszcze więcej informacji na temat danych w danej kolumnie możemy użyć do tego parametru `describe()` `adult["Marital Status"].describe()`. 
+```python
+#count                   32561
+#unique                      7
+#top        Married-civ-spouse
+#freq                    14976
+#Name: Marital Status, dtype: object
+```
+Dzięki temu dostajemy informacje o licznie elementów w danej kolumnie a także ile unikalnych wartości znajduje sie w kolumnie, najpopulaniejszą kategorię i liczbę jej wystąpień. 
+
+Innym sposobem jest wykorzystanie metody `value_counts()`, która zwraca wartości kategoryczne oraz ich liczbę.
+```python
+# Married-civ-spouse       14976
+# Never-married            10683
+# Divorced                  4443
+# Separated                 1025
+# Widowed                    993
+# Married-spouse-absent      418
+# Married-AF-spouse           23
+# Name: Marital Status, dtype: int64
+```
+Można także zwrócić ile procent danej kategorii jest w danej kolumnie przy użyciu metody i odpowiedniego parametru `value_counts(normalize=True)`
+```python
+# Married-civ-spouse       0.459937
+# Never-married            0.328092
+# Divorced                 0.136452
+# Separated                0.031479
+# Widowed                  0.030497
+# Married-spouse-absent    0.012837
+# Married-AF-spouse        0.000706
+# Name: Marital Status, dtype: float64
+
 ```
