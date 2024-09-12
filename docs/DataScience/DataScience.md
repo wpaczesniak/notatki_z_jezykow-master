@@ -3912,3 +3912,63 @@ Można także zwrócić ile procent danej kategorii jest w danej kolumnie przy u
 # Name: Marital Status, dtype: float64
 
 ```
+
+Wyświetlenie typu każdej kolumny odbywa sie po przez wykorzystanie metody `dtypes`
+
+Aby wyświtlic typ danej serii czyli danej kolumny używamy metody `dtype`. `O` oznacza że to obiekty.
+
+```python
+adult["Marital Status"].dtype
+#dtype('O')
+
+adult["Marital Status"] = adult["Marital Status"].astype("category")
+
+adult["Marital Status"].dtype
+#
+```
+
+Są dwa sposoby tworzenia serii kategoeycznych, gdy dane nie są jeszcze w formacie DataFrame. Wykorzystuje sie do tego parametr `dtype` 
+
+```python
+my_data = ["A", "A", "C", "B", "C", "A"]
+
+my_series1 = pd.Series(my_data, dtype="category")
+print(my_series1)
+```
+
+Innym sposobem jest wykorzystanie metody `Categorical`
+```python
+my_data = ["A", "B", "C", "B", "C", "A"]
+my_series2 = pd.Categorical(my_data, categories=["C", "B", "A"], ordered=True)
+my_series2
+
+#[A, A, C, B, C, A]
+#Categories (3, object): [C < B < A]
+
+
+```
+
+Przechowywanie serii pand z typem categorical jest przydatne z powodu oszczędności ogromnej liczby pamięci.
+
+```python
+adult = pd.read_csv("data/adult.csv")
+adult["Marital Status"].nbytes
+#260488
+
+adult["Marital Status"] = adult["Marital Status"].astype("category")
+adult["Marital Status"].nbytes
+#32617
+```
+
+Można przed wczytaniem zrobic słownik gdzie kluczem będzie kolumna a wartościa typ zmiennej.
+
+```python
+adult_dtypes = {"Marital Status": "category"}
+
+adult = pd.read_csv("data/adult.csv", dtype=adult_dtypes)
+
+adult["Marital Status"].dtype
+
+# CategoricalDtype(categories=[' Divorced','Married-AF-spouse',..., ' Widowed'], ordered=False)
+
+```
