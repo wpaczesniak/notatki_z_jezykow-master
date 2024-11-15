@@ -3972,3 +3972,89 @@ adult["Marital Status"].dtype
 # CategoricalDtype(categories=[' Divorced','Married-AF-spouse',..., ' Widowed'], ordered=False)
 
 ```
+
+`.str` umożliwia wykonywanie operacji na danych tekstowych w kolumnach typu `Series`
+
+`.apply()` pozwala na zastosowanie funkcji dla każdego elementu.
+
+Używanie funkcji NumPy w seriach kategorycznych zwykle powoduje błędy. 
+Trzeba sprawdzć zawsze czy mamy doczynienia ze zmieną kategoryczną. 
+
+Check - sprawdzenie
+```python
+used_cars["color"] = used_cars["color"].astype("category")
+used_cars["color"] = used_cars["color"].str.upper()
+print(used_cars["color"].dtype)
+# object
+```
+
+convert - przekształcenie
+
+```python
+used_cars["color"] = used_cars["color"].astype("category")
+print(used_cars["color"].dtype)
+# category
+```
+
+Trzeba sprawdzać czy zmiany zadziałały zgodnie z zamierzeniami
+
+```python
+used_cars["color"] = used_cars["color"].astype("category")
+used_cars["color"].cat.set_categories(["black", "silver", "blue"], inplace=True)
+used_cars["color"].value_counts(dropna=False)
+```
+
+Przykład że nie można wykorzystać funkcji NumPy:
+
+```python
+used_cars["number_of_photos"] = used_cars["number_of_photos"].astype("category")
+used_cars["number_of_photos"].sum()
+```
+
+Można jednak przekonwertować szereg na liczbę całkowitą i zastosować sumowanie.
+
+```python
+used_cars["number_of_photos"].astype(int).sum()
+
+# .str converts the column to an array
+
+used_cars["color"].str.contains("red")
+
+# 0     False
+# 1     False
+```
+
+Kodowania etykiet to technika kodowania wartości kategorycznych jako liczb całkowitych. 
+Kody zaczynają się od `0` i kończą na `n - 1`, gdzie n to liczba kategorii.  
+Kod `-1` skazywany jest dla brakującej wartości.  Kodowanie etykiet służy do
+oszczędzania pamięci i upraszczania odpowiedzi.  
+
+#### Tworzenie kodów
+
+```python
+used_cars["manufacturer_name"] = used_cars["manufacturer_name"].astype("category")
+used_cars["manufacturer_name"] = used_cars["manufacturer_name"].cat.codes
+
+print(used_cars[['manufacturer_name', 'manufacturer_code']])
+
+#         manufacturer_name     manufacturer_code
+# 0                  Subaru                    45
+# 38526            Chrysler                     8
+```
+
+Przy kodowaniu etykiet należy stworzyć mapy. Można to zrobić tworzyć obiekt dla kodów 
+i obiekt dla kategorii.
+
+```python
+codes = used_cars["manufacturer_name"].cat.codes
+categories = used_cars["manufacturer_name"]
+
+name_map = dict(zip(codes, categories))
+```
+
+Używanie słownika:
+
+```python
+used_cars["manufacturer_code"] = used_cars["manufacturer_name"].cat.codes
+used_cars["manufacturer_code"].map(name_map)
+```
