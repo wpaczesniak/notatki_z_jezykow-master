@@ -4058,3 +4058,15 @@ Używanie słownika:
 used_cars["manufacturer_code"] = used_cars["manufacturer_name"].cat.codes
 used_cars["manufacturer_code"].map(name_map)
 ```
+
+Etykietowanie wszystkich słów które zawierają słowo **"van"**.
+Etykietowanie zero jedynkowe gdy w słowie zawarte jest **"van"**.  
+
+```python
+# Codes from previous lesson:
+used_cars["body_type"].str.contains("van", regex=False)
+
+used_cars["van_code"] = np.where(
+    used_cars["body_type"].str.contains("van", regex=False), 1,0)
+used_cars["van_code"].value_counts()
+```
