@@ -4070,3 +4070,735 @@ used_cars["van_code"] = np.where(
     used_cars["body_type"].str.contains("van", regex=False), 1,0)
 used_cars["van_code"].value_counts()
 ```
+
+
+// TO DO uzupelnić dane o ten rozdzial przed data storytelling
+
+## Data Comunication Concept
+
+### Storytelling with Data
+
+W analizie wazna jest komunikacja w tym szczegolnie przepływ informacji. Zła komunikacja może doprowadzic do katastrofy podobnej do Challengera gdzie śmierci uleglo 7 astronautów. Technicy przekazali informację o uszczelce ale nie została ona zgłoszona dalej. 
+
+Dobra analiza:
+- wyjaśniono rzeczy techniczne nawet dla osób nie technicznych,
+- ułożenie tak historię by wplynąc na podejmowanie decyzji,
+- nie kłamiemy
+- ciąg przyczynowo-skutkowy
+Wiadomości przekazywane przez prezentera powinny być **proste**,  a przede wszystkim **wiarygodne**.
+
+Kazda prezentacja powinna zawierać odpowiednie zaprezentowanie danych. Dobra analiza powinna przekonac interesariuszy,którzy są przeciwni do zmian, ktore należało by zmienić. Dobra analiza powinna zainteresować interesariuszy ktorzy nie są specjalistami technicznymi a szczególnie nie są dobrze obeznani z matematyką lub statystyką.   
+
+Opowiadanie o danych (*data storytelling*)
+Mechanizm, który udostepnia spostrzeżenia po przez narrację i zrozumiala wizualizację. 
+Dzięki temu mozliwe jest
+- napędzanie ludzkiej wyobraźni 
+- zapadnięcie w pamięć lepiej niż metryki
+- nadają kontekst danym
+- uwaga słuchaczy jest poddtrzymywana i przykuwana,
+- ułatwiaja podejmowanie decyzji
+- pozwalają na napędzenie zmian i podejmowanie działań
+
+
+Aby dobrze przedstawić analizę to taka:
+- przedstawienie najważniejszej treści w **trzy minuty**,
+- za pomocą jednego zdania przedstawic to co nas popycha i nas motywuje do działania,
+
+
+//TO Do daodać rysunek z pierwszego filmiku **(Fundamentals of storytelling - 2:57)**
+
+Prezentacja wyników analizy powinna opierać sie na trzech filarach: danych, narracji i elementow wizualnych. 
+
+Opowiadanie o danych powinno
+- wysiagnąć jasne wnioski z naszej analizy
+- wyjasnić temat
+- zwięzły, który poda konkretne fakty
+
+
+Efektywna historia zawiera:
+- wnioski z naszych modeli oraz analiz, które odnoszą się do sytuacji,
+- dokładne i wiarygodne danych,
+- praktyczne spostrzeżenia,
+- dobra narracja która powoduje ze analiza jest atrakcyjna i łatwa w zrozumieniu,
+- tylko najważnejsze informacje,
+- wziecie pod uwagę docelowych odbiorców, ktore pomaga w wyjaśnieniu faktów,
+- należy nie wprowadzać w błąd wykresów, proste i czytelne.
+
+W prezentowaniu analizy nalezy zwrocic uwagę na naszych odbiorców czy są techniczni czy nie,
+Należy zaprzestać mowieniu o metodach dojscia do celu. Dla odbiorców wazniejszy jest wynik oraz metody wdrożenia zmian w życie.
+
+Historie powinny być proste do zrozumienia i zaangażowac publicznosc nietechniczną. Warunki mogą ułatwiać procesy decyzyjne i napędza do zmian. 
+Na poczatku trzeba zwrócić uwage na odbiorcow tak by nasza tresć byla zrozumiala dla nich. 
+Odbiorcy powinni zrozumieć wplyw i ograniczenia prognoz na temat naszego modelu,
+Powinniśmy być otwarci i świadomi na pytania od odbiorców
+Powinniśmy zrozumieć co odbiorcy chcą.
+
+Aby łatwo zrozumieć jak powinnismy prezentować nasze analizy powinniśmy zastosować technikę ADEPT:
+- **A**nalogy - porównywanie nowo omawianych rzeczy do rzeczy juz znanych. Czyli np. tłumaczenie działania sieci neuronowych na przykładzie nauki dziecka. Akronimy czyli skróty powinny być używane ostrożnie. Pomagają one w komunikacji o ile wszyscy odbiorcy je rozumieją, a w przeciwnym razie szkodzą. Dobra praktyka jest wyjaśnienie akronimy w pierwszym użyciu. Powinniśmy ograniczać żargon. Tlumaczyć technologie na prostsze i znane terminy. Dodawanie słownika w dokumentacji, który tlumaczy te skróty.  
+- **D**iagram - pomagają zwizualizować proces, gdzie ilustracyjna moc jest zawsze skuteczniejsza
+- **E**xample 
+- **P**lain English
+- **T**echnical definition
+
+
+Prezentowanie analizy powinno opierać się na wpływie a nie na procesie. 
+Powinnismy wiedzieć ze nie wszystkie szczegoły techniczne mozna usunąć z naszej prezentacji ale jednak trzeba je dobrze i jasno wyjaśnic naszym odbiorcom.
+Pytać się odbiorcow czy rozumieją temat i czy są pytania. Trzeba być przygotowany na wyjaśnianie pojec przy wykorzystaniu roznych strategii. 
+
+#### Narracja
+Skupmy się na narracji, po znalezieniu odpowiednich spostrzeżeń w naszych danych powinnismy znależć sensowny sposob ich przedstawienia. Narracja ta powinna zawierać: 
+- tylko kluczowe punkty, 
+- wprowadza zmiany,
+Dbra narracja porządkuje informacje, tak aby zaangażować odbiorców i sprawić by zainteresowali sie wynikami lub informacjami. Rozpoczynając swoją prezentację powinniśmy przedstawić szczegółowe informacje na temat motywacji, co się zmieniło. Trzeba zwracać uwagę na to na czym skupia się analiza. Po przedswieniu dowodów na czynniki, które przyczyniły się do powstania problemu. Powinnismy podawać tylko istotne informacje, a nie szczegółowe dane, ktore przeciążają odbiorców. Można pokusić sie o głebsze wyjaśnienie przyczyny problemu. Powinnismy zawrzeć centralny wniosek analizy, który zapewnia jasny wgląd na to co może się stać, jeśli nic się nie zmieni. Na końcu powinniśmy przedstawić potencjalne rozwiązania i mozliwosci po przez zelecenia co do sposobu postępowania. Powinniśmy być proaktywni i prowadzić publiczność przez zrozumienie.
+
+#### Selecting the right data
+
+W celu odpowiedniego przekazania informacji należy ustalić do jakich osób będziemy kierować swoja wypowiedź, wybrane ustalenia jak i statystyki, wizualizacje, format naszych wyników. 
+Należy zwrócić uwagę na wybor odpowiednich danych, czy to takie dane ktore zawierają wystarczająco kontekstowych spostrzeń w naszej historii, by poprzeć nasz głowny punkt bez przeładowania naszego sprawozdania informacjami. Zależy nam na tym aby uwzględnić minimalną liczbę wyników. 
+Nalezy pamiętać że jak weźmiemy zasmiecone dane to nasza analiza również będzie zaśmiecona. Nasze wyniki muszą wyrożniać inny widok danych dla każdej grupy odbiorców. Trzeba dostosować nasz sposob prezentowania dla każdego z nich.
+Odbiorcy sa różni w różny sposob zainteresowani wynikami projektu. określenie osob pomaga dobrać odpowiednie dopasowanie, tak aby przekazac kluczowe spostrzeżenia. Po znalezieniu naszej historii musimy zdefiniować osoby w naszych celach. Pozwoli to na dobranie ustalenia naszego przekazu. Dobra przezentacja zagadnienia jest skierowana do rożnego rodzaju sceptyków. Majac na celu lepszy przekaz analizy powinniśmy:
+- najpierw przekonać do racji samego siebie,
+- następnie przyjaciela,
+- a na końcu sceptyka.
+
+#### Różnice w danych
+
+Rożnicę miedzy zbiorami możemy przedstawić jako: 
+- wartość bezwględna np. liczbę bezwględną w konkretnych liczbach, 
+- wartość względna w procentach.
+
+Bezwzględna zmiana dla małej liczby może byc niewielka, nawet jeśli wzgledna zmiana jest duża. 
+Z drugiej strony wzgledne zmiany na malych liczbach mogą wydawać się większe niż są w rzeczywistości. Mała zmiana bezwgledna może skutkować dużą zmianą procentową. 
+
+//TO DO dodać wykresy z 1:40 z filmiku **Showing relevant statistics**
+
+Pierszy wykres przedstawia sprzedaż w liczbach (wartości bezwzgledna) a drugi przedstawia proporcje zmian wyrażoną w procentach.
+
+#### Ratio
+
+Jest to porównanie dwóch zmiennych wyrażonej jako iloraz. 
+
+// TO DO przedstawić wykres z 2:08
+W przypadku czekolady i chipsów możemy posłużyć się przychodem podzielonym przez liczbę klientów. Ratio pomaga znormalizować wartości co pomaga porównać rozkład danych z pierwotnie różnych skal.  
+
+#### Agregacja
+
+Niekiedy należy podsumować dane liczbowe w agregacje, czyli takiej liczbie ktora daje wyobrazenie o całości lub przez wybranie wartosci reprezentatywnej. Może to byc łączna sprzedaż lub czas trwania kampanii. Innym przykładem jest średnia, mediana. Średnia może wprowadzać w błąd, szczególnie gdy występuja wartosci odstające. 
+
+### Wizualizacja 
+
+Wizualizacja jest przeznaczona dla konkretnej grupy odbiorców i znajomości przez nich pojęć. Na przykład wykres gestości byłby odpowiedni dla osób technicznych, natomioast histogram odpowiedni dla osób nietechnicznych. 
+
+**Zasada Pareto** mówi o tym że większość wyjść pochodzi z mniejszości wejść. Dane, które są mniej istotne powinniśmy zagregować, to ogranicza hałas. Analiza powinna być uproszczona do poziomu wiedzy naszej publiczności. Należy nam na szybkim spostrzezeniu przez odbiorców. Zamiast pokazywać wiele szczegółów powinniśmy pokazać najprostsze i najistotniejsze dane. Należy skutecznie zaprezentować wizualizację naszym odbiorcom. 
+
+
+**Metoda McCandless**
+Najpierw naszemu wykresowi nadać nagłówek i za pomocą jego odnosić sie do słuchaczy i w dalszej części prezentacji. Nagłówek powinnym być krótki, jasny i oczywisty. To on wspiera naszą historię i wyjaśnia wizualizację. Dodac opis osi x i y gdyż pomaga to w łatwiejszej interpretacji wykresu. Należy opierać się na solidnych danych i być gotowym na pytania. Uwaga powinna się skupić na naszym wykresie i naszej historii. O każdym wykresie powinniśmy wyjaśniac nasze spostrzerzenia co do naszej wizualizacji. Powinniśmy wyjaśniać co widzą, a nie zakładać, że pytania pojawią się później lub sami je zrozumieją. Na końcu powinnismy odniesc się do wykresu i jego spostrzeżeń i jakie ma to zastosowanie na przyszłość i jakie kroki należy podjąć. 
+
+
+### Choosing the appropriate format
+
+//TO Do 
+Dodać wykres z 0:19 
+
+#### Prezentacja
+
+Na koncu każdej analizy nalezy zaprezentowac naszą analizę
+Dobra komunikacja zawiera:
+- kluczowe informacje,
+- wciągający/interesujący,
+- łatwe do zrozumienia.
+
+Każda analiza wymaga pisemnego i ustnego raportu, lecz trzeba pamiętać od sytuacji projektu. Podczas przygotowania prezentacji końcowej powinniśmy wziąc pod uwagę:
+- publiczność,
+- zawartość,
+- specjalne wymagania,
+- kanał komunikacji
+
+Wszystkie te elementy pomagają określić najlepszy format do komunikowania naszych wyników. Poniżej rozwinięto powyższe punkty na których należy się skupić: 
+- komu prezentujemy naszą prezentację, 
+- dlaczego publiczność ma wiedzieć o ustaleniach:
+    - metodologię,
+    - odpowiedzialność,
+- jak wykorzystać nasze odkrycia
+    - podjęcie decyzji,
+    - rozpoczecia nowego projektu,
+- jakich informacji potrzebują
+  - wyniki naszych analiz
+  - wpływ na nasze dotychczasowe ustalenia. 
+  
+Dowiedzieć się czy odbiorcy:
+- mają jakies szczegołowe wymagania,
+- mają wystarczająco dużo czasu na zapoznanie się z raportem czy lepsze krótkie spotkanie, 
+- czy werfikują otrzymane informacje,
+- jaką formę komunikacji preferują zwrócić uwagę na strefy czasowe.
+- forma dokumentu czy word, notatnik Jupyter, czy blog
+W jaki sposób zostanie on dostarczony czy będzie on bezośrednio prezentowany interesariuszom by odpowiedziec na komentarze.
+W końcu jak duża ma być publiczność. Dostosowywujemy prezentacje do ludzi inaczej prezentujemy dla 6 osob a inaczej dla 200 osob.
+
+Wybór formy komunikacji (pisemna czy ustna) nie zależy tylko od odbiorców, ale zarówno od zalet i wad różnych formatów.
+
+Komunikacja ustna pozwala na budowanie relacji z publicznoscią oraz natychmiastowa informację zwrotną. Lepszy przekaz gdyż mowa ciała i głos dają dużo do znaczenia. 
+
+Wadą tego ustnej prezentacji jest: 
+-brak trwałego zapisu spotkania 
+- nie nadaje się do długich wiadomości. Im dłuzsza prezentacja tym wieksza szansa na to ze publiczność straci koncentrację. 
+
+
+Komunikacja pisemna pozwala na:
+- udostepnienie zapisu komunikacji, przez co wiadomość może być analizowana w dłuzszej perspektywie,
+- łatwiej udostepnić to dużej grupie odbiorców,
+- mniej podatny na reakcje emocjonalne,
+- udostępnienie kodu dowolnemu interesariuszowi technicznemu. 
+
+Wadą jest:
+- brak reakcji publiczności co utrudnia adaptację. 
+- odpowiedź nie jest natychmiastowa, ale pojawi się później w formie komentarzy
+
+
+Dla osob kierowniczych liczy się naszymi wnioskami i chcę szybkich odpowiedzi na swoje pytania. Ceni czas więc trzeba szybko i merytorycznie podejść do tematu. 
+Po spotkaniu nalezy spożądzić raport który będzie zawierał ważne decyzje oparte na naszych wnioskach i przekaże je inwestorom. Nalezy sporzadzić je w pisemny raport, biorąc pod uwagę pytania i opinie, które od niej otrzymaliśmy. 
+
+### Types of reports
+
+W tym rozdziale dowiesz się jak tworzyć pisemny raport. 
+
+W raporcie powino znaleźć: 
+- na czym koncentruje sie nasz projekt,
+- analiza recencji produktów,
+- przedstawienie naszych ustaleń,
+- krytyczna analiza wniosków czyli co należy zmienic na co zwrócic uwagę,
+- szacunki dokładności naszej analizy,
+- standardy nadane przez firmę,
+- wyniki analizy powinny być klarowne i łatwe do werfikacji, gdyż to one będą napędzac zmianę,
+
+
+Istnieja różbne typy raportów:
+- **Ratorty informacyjne,** ktorych zadaniem jest podawanie faktycznej informacji. Są krótkie i nie mają ścisłej struktury. Ich zadaniem jest informowanie o faktach bez dodawania jakichkolwiek analiz.
+
+- **Raporty analityczne**, których zadaniem jest dostarczenie analizy i demonstracja zaleznosci lub rekomendacji. Mogą różnić się wielkością ale maja scisłą strukturę. Celem ich jest podejmowanie decyzji na podstawie danych. 
+
+
+- **Sprawozdanie końcowe** obejmują szczegółową analizę danych, ustalenia i wyniki, a także wizualizacje. Zwykle są długie i są przeznaczone dla odbiorców, ktorzy potrzebują szczegółów technicznych. 
+
+- **Raporty podsumowywujące** zawierają kluczowe ustalenia i zalecenia a takze wizualizacje. Zwykle są krótkie i mają mniej niż pięć stron. Wynika to z faktu że sa podsumowaniem raportu końcowego i mogą zawierać odnosniki do dokumentu głównego. Są przeznaczone dla decydentów, ktorym nie potrzebne są szczegóły techniczne. 
+
+
+W przypadku raportów analitycznych, koncowych jaki i podsumowywujących posiadają nastepującą strukture:
+- wprowadzenie
+  - podsumowanie cel raportu,
+  - dlaczego przeprowadzono ta analizę przedstawić motywację,
+  - podsumowanie pytań analitycznych- np. Jakie czynniki wpływaja na złe wrazenia użytkowników,
+- treść raportu 
+  - opis najistotniejszych danych słowno-muzycznie albo za pomocą tabeli
+  - metody, które posłuzyly do zebrania i analizy danych oraz do zbudowania modelu. 
+  - W analizie uwzględniamy wybrane dane do analizy, gdzie modelujemy je za pomocą wizualizacji, np. za pomoca wykresu
+  - wyniki, w ktorych opisujemy i wyjaśniamy wyniki naszej analizy 
+- podsumowanie 
+  - ponownie sformułowanie pytania analitycznego,
+  - podsumowanie najważniejszych wyników analizy,
+  - podajemy tu nasze zalecenia dotyczących kolejnych kroków
+  
+Powyższa struktura doprego raportu/sprawozdania jest dobra dla umieszczenia ich w czasopismach naukowych. W kotekscie biznesowy odbiorcy są inni i nalezy sie dopasować do nich. Odpowiednia metoda to podejście 1-3-25. Tworzy sie wtedy streszczenie wykonawcze
+    - 1 strona bardzo krótka analiza tylko najważniejsze informacje
+    - maksymalnie 3 strony streszczenia całej analizy
+    - maksymalnie 25 stron szczegółow
+  
+Zawsze trzeba pamietać o naszych interesariuszach, gdyz kazdy z nich jest zainteresowany różnymi częściami naszego raportu dlatego należy odpowiednio dopasować. Gdyż moga być ludzie którzy mają mało czasu np kierownicy, dyrktorzy. Czytają oni wstęp i zakończenie a nastepnie przegladnie tresć w poszukiwaniu poszczegolnych punktów. Wniosek powinien zawierać wskazówki co do naszej analizy a przede wszystkim zawierać nasza rekomendację. Interesariusze techniczni są głównie zainteresowani trescią raportu. Chcą zrozumieć nasze metody tyechniczne i analizy.
+
+
+### Reproducibility and references
+
+Podstawową częścia przekazywania naszych ustaleń jest fakt że nasz raport jest jasny i powtarzalny. Powtarzalność czyli reprodukcja to dla przykladu jak mamy przepis to idąc zawsze tymi samymi krokami osiagniemy ten sam cel. Wynik za każdym razem powinien byc ten sam i nie zmienny o ile pracujemy na tych samych danych. Dązymy do uzyskania podobnych wynikow przy wykorzystanu tego samego ogólnego podejścia. Jest to kluczowe dla Data Scientisty gdyz zapobiega powielaniu się wysiłkom wykonywania tej samej czynnosci. Umozliwia to kontynuacje dotychczasowej pracy i skoncentrowanie sie na nowych wyzwaniach. Ważne jest w sposób w jaki uzyskano wyniki. 
+
+Dobre praktyki w pracy nad danymi.
+
+1) Powinnismy zatrzymać wszystkie skrypty które pozwoliły nam uzyskać wynik. Dodawac komentarze, przekazywać informacje o wykorzystanych pakietach. Wykorzystywanie systemu kontroli wersji, który śledzi wszystkie zmiany i wersje w naszych skryptach. 
+
+2) Należy unikać recznych manipulacji danych po przez ręczne zmiany bezpośrednio w edytorze. Powinnismy zapisac wszystkie wersje naszego pliku. Powinnismy ratować surowe dane wraz ze skryptem z krokami pośrednimi. Dzieki temu będzie możliwe przedstawienie historii i utworzenia wokół niej narracji. 
+
+3) Wyraźny widok gwarantuje co się dzieje z danymi, a zatem może dostosowywać i rozwiązywać problemy. Kontrola wersji jest ważna gdy w uczeniu maszynowym występuje element losowości. Wykorzystanie różnego ziarna w losowości może spowodować otrzymanie rożnych wyników. Jeśli wykorzystamy rożną liczbę różnych ziaren i otrzymamy ten sam wynik to wynik zależny jest od modelu a nie od losowości. 
+
+4) Przewidywalnosc algorytmu to stopień w jaki człowiek moze zrozumieć model, przyczynę decyzji. Przewidywalność jest istotna by wytłumaczyć odbiorcom ze nasze wnioski mogą zostac oddtworzone. 
+
+5) Powinnismy poprawnie cytować prace innych ludzi w naszej analizie. Najpopularniejszm stylem jest APA ktory wykorzystuje cytaty w tekście. Umieszcza on nazwisko autora i datę publikacji. Do wykorzystania odniesień mozna wykrzystać **EndNote**, **Mendeley**, **RefWorks**,
+W biznesie wystarczy dołączyc hiperłącze do źródła. Należy kierować się że informacje są łatwe do zdobycia. 
+
+
+### Write precise and clear reports
+
+Raport powinien byc nie tylko powtarzalny ale przedewszystkim jasny i zrozumiały. Raport powinien być:
+- jasny
+- precyzyjny
+- nie wprowadzać w błąd i zamieszanie,
+- łatwe do zrozumienia przesłanie
+
+Powinniśmy unikać pustych frazesów nie daja one znaczenia oraz informacji. Należy **unikać** sformułowań:
+- warto zauważyć że,
+- fakt, że
+- należy podkreślić, że
+- jak powszechnie wiadomo,
+- jest to oczywiste. 
+
+Puste frazesy rozpraszaja i nalezy ich unikać. 
+
+**Trzeba być bezpośredni i rzeczowym.**
+
+W skrócie jeśli tekst nic nie dodaje informacji należy go usunąć. Pisanie techniczne jest zwiezłe i bezpośrednie. Powinniśmy pisać konkretne rzeczowniki i unikać nadużywania zaimków to, tamto itp, bo powodują one że nie wiadomo do czego sie one odnoszą. Śledzenie co oznaczają zaimki obciąża swiadomość poznawczą co odwraca uwagę czytelników od rzeczywistego problemu. 
+
+Głos aktywny czyli koncentrujemy się na aktorze a nie nad faktami. Wykorzystuje się go w biznesie.
+Głos bierny krytykowany jest za zbyt duszny i trudniejszy do odczytania. Wykorzystuje się w języku akademickim. 
+
+Przy podkresleniu argumentu łatwo jest użyć zbednych przymiotników i przysłówków. Należy dążyć do ich ograniczenia a nawet do ich eliminacji. Należy unikać długich zdań pozwoli to na unikniecie błedow jezykowych jak i lepsze zrozumienie tematu. Nalezy unikać przecinka w formułowaniu wniosków. Powiniśmy wprowadzić takie słowa jak: ponieważ, bo.
+
+### Case study: report on credit risk
+
+
+#### Story
+Napoczatku tworzymy historie i skupiamy się na tle.
+
+np. W ciągu 5 lat nastapił wzrost odsetka klientów zalegających ze spłatą. Bank postanowił zainteresować się przewidywaniem, którzy klienci mają wysokie prawdopodobeństwo niewypłacalności. 
+
+Po przeanalizowaniu danych widac że osoby z dłuższym okresem bezrobocia cześciej splacają zobowiązania. Ponadto młodsi ludzie o niższych dochodach częściej spłacają zobowiazania. 
+
+Po przetrenowaniu modelu jesteśmy wstanie powiedzieć, ktore osoby są skłonne do niewypłacalności z dokładnością do 95%.
+Następnym krokiem powinno być przeprowadzenie próby na kontrolowanej populacji. 
+
+#### Tech or noc-tech
+
+Mamy wyniki terez trzeba przetłumaczyć wyniki techniczne dla interesariuszy nietechnicznych.
+
+#### The right data
+
+Kto jkest naszym odbiorcą czyli dla kogo raportujemy: dla dyrektora, która decyduje za wdrożeniem automatycznego systemu odrzucania pożyczek, przy wykorzystaniu naszego modelu. Zglaszamy wiec zaleznosc między wiekiem czy dochodem a kredytem. Dodatkowo prognozujemy odsetek niewywiązujących się klientow w ciągu najbliższych miesięcy. 
+
+W tym zakresie pokazujemy średni wiek i dochód klientow niewywiązujących sie z platnosciami w porownaniu z klientami wypłacalnymi. Przedstawiamy liczbę klientów zalegających ze splata w czasie (to jest procent zmiany).
+
+#### Wizualizacja 
+
+Dołączamy wykres pudelkowy pokazujacy wiek lub dochód tych co są wypłacalni lub nie. Przedstawiamy wykres liniowy przedstawiający procentową zmianę liczby klientow zalegających ze splatą w ciągu następnych miesięcy. 
+
+#### Prezentacja 
+
+Podsumowywując:
+who? - raportujemy dla dyrektora dzialu finansowego,
+why? - bo ma wazną decyzję do podjęcia,
+content Jest zainteresowana naszymi klucowymi ustaleniami i rekomendacjami
+channel - przesłanie e-mailem ustaleń przed spotkaniem 
+
+Powyższe prowadza nas do stworzenia pisemnego raportu. Dla osob nie-technicznych wybieramy raport podsumowujacy, dla technicznych raport końcowy.
+
+Ma to być raport informacyjny czy analityczny?
+Przedstawiamy nie tylko fakty ale także analizy tak więc odpowiednim wyborem będzie raport analityczny. 
+
+Jaka jest struktura tego raportu:
+
+- najpierw podsumowujemy cel naszego raportu,
+- dodajemy kontekstowe informacje o celu naszego projektu,
+- podajemy pytania analityczne
+
+W rozwinięciu opisujemy dane ale zawieramy tylko kluczowe ustalenia w sekcji wyników. 
+
+W podsumowaniu ponownie przedstawiamy pytania łaczac je z naszymi ustaleniami i dodajemy nasze rekomendacje. 
+
+### Planning an oral presentation
+
+Warto zaplanować co ma byc w prezentacji niz robic to na oślep. Dobra prezentacja uwzglednia:
+- zamiar
+- rozmiar publiczności,
+- wiadomość, którą chcemy przekazać,
+
+
+#### Zamiar 
+
+Typy prezentacji:
+- **informacyjna** 
+- **instruktażowa** wyjasnia w jaki sposób zbudowano model analizy
+- **przekonywująca**
+
+#### Publiczność
+
+Kto jest odbiorcą? Jak duża jest publiczność?
+
+#### Widomość
+Nasza publiczność zapomni 90% prezentacji tydzień po jej obejrzeniu. Trzeba zrobić tak by zapamietali jedną rzecz z prezentacji.
+
+#### Otwartość
+Przyciagnąć naszą publiczność i przedstawić jedną rzecz, ktorą chcemy aby odbiorcy zapamiętali. **Ma to być jedno zdanie.**
+
+Podsumowanie, które podsumuje prezentację i wzmacnia główny przekaz.
+
+#### Struktura
+Zaczynamy od wstępu. Powinniśmy przekazać pewne podstawowe informacje. Powinny one przykuwać uwagę naszych słuchaczy i dawać im wglad w nasza prezentacje. Możemy zagłębić się w metody, analizy oraz w wyniki modeli. Wyciagnięcie wniosków, dodania wezwania do dzialania lub rekomendacji dalszych kroków. Sluchacze sa uważni na początku i na końcu naszego wystąpienia. 
+
+#### Zarys
+
+Przedstawienie wykresów i wizualizacji, które chcemy użyć. Trzeba zaplanować, które sekcje będą nam potrzebne i ich kolejność. Powinno być maksymalnie 5 sekcji. Większa ich liczba utrudnia utrzymanie uwagii odbiorców.:
+Te sekcje to:
+- powód analizy,
+- analiza eksploracyjna,
+- analiza nastrojów,
+- wnioski,
+- działania następcze.
+
+### Building presentation slides
+
+Slajdy powinny wspierac historię, którą przekazujemy. Powinniśmy pamiętać o naszych zdolnosciach uwagi odbiorców. Slajdy nie powinny być zawalone treścią. Nie powinniśmy przejmować sie czasem spędzonym na poszczegolnym slajdzie. **Za to powinnismy mieć jedną wiadomość na slajd.**
+Sprawi to ze sprawy będą krótkie i płynne. Odbiorcy moga przyswoić tylko pewną ilość informacji naraz. Próba wytlumaczenia wielu informacji jednocześnie zwiększy obciążenie poznawcze, zaciemniają nasz przekaz i spowoduje że nasi sluchacze przeoczą niektóre kluczowe punkty. Formatowanie moze doprowadzić do zaciemnienia przekazu. Jedna z technik jest kolor. Wszystko co prezentujesz powinno przekazywać znaczenie. 
+Powiśmy zwracac uwagę na to aby nasza prezetacja byla także dobrze odbierana przez osoby z niepełnosprawnosciami, np wykres zielony z czerwonym. Czcionki również wplywaja na czytelność. Badania nie określają jednoznacznie który kroj czcionki jest łatwiejszy do odczytania czy to bedzie szeryfowa czy bezszeryfowa. Praktyką jest aby **tekst bezszeryfowy** był odpowiedni dla tekstu, ktory będzie **czytany na ekranie**. **Szeryfowa** jest dobra gdy **tekst będzie drukowany**. Slajd powinien być o tym o czym mówimy. Należy starać się by tekst byl krótki ale za to duży. Formatowanie tekstu jest ważne ale nie można przesadzać bo to odwróci uwagę naszych odbiorców. Slajdy nie powinny zawierać dużej ilosci tekstu. Ludzie maja tendencję do czytania slajdu a nie do słuchania. Zamiast długiego tekstu powinniśmy napisać głowne punkty wspierające nasze przesłanie. Slajdy sa tylko wsparciem. Slajdy nie są zbudowane do konsumcji bez prezentera. Nie powinno byc copy paste slajdu z prezentacji do raportu. Naglówek slajdu pozwala na przekonanie odbiorców na zwrócenie uwagi. Naglówek powinien podkreslać główny punkt slajdu. Powinien być zwięzły, konkretny i widoczny dzięki większej czcionce. Warstwy to potężne narzędzie, który dzieli slajd na mniejsze punkty. Powinnismy miec czysty slajd o lepszej strukturze. Ułatwi to skupienie się na każdej cześci z osobna. Każdy pukt powinien być wyjaśniany osobno. Na końcu wyświetlamy wszystko razem. Takie podejście pozwala na skupienie uwagi odbiorców. Gdy uzywamy zdyt dużej ilości tekstu powinniśmy zastąpić go wykresem. Warstwowanie możemy zastosować także dla wykresów. Wyświetlajac kazdy z nich osobno a na końcu łaczyc je. Na slajdzie powinno znajdować sie maksymalnie dwa slajdy. 
+
+### Delivering the presentation
+
+Slajdy powinny wspierać historie którą chcemy przkazać.
+W celu dobrego przygotowania się do prezentacji należy napisac scenariusz. Uzywać go jako przewodnik i spostrzeżenia. 
+Powinnismy przewidywać pytania od odbiorców i zastanawiać się nad odpowiedziami na nie.
+Nie które rzeczy nie brzmią tak dobrze w mowie jak to byłow formie pisemnej. 
+Powinniśmy łączyć w mowie kolejne slajdy między sobą. Dodatkowo powinniśmy przećwiczyc odpowiadania na pytania, które przewidywaliśmy. 
+
+Kilkukrotne przećwiczenie naszej prezentacji to skuteczny sposób na zapoznanie się z naszymi treściami. 
+Podczas prezentacji powinnismy zwracać naszą świadomość na nasze emocje. Mowa ciała ma ogromne znaczenie. Odbiorcy potrafią utrzymać uwagę od 5 do 20 minut. Trzeba robić wszystko by angażować odbiorców w naszą prezentację. Możemy to zrobić po przez kontakt wzrokowy, interaktywność, zadając im pytania. Trzeba budować relację z publicznością trzeba okazywać empatię oraz trzeba być przewodnikiem. Powinniśmy unikać słów "jak wiesz" czy "oczywiscie". Używanie takich słów spowoduje, że odbiorcy nie będą chcieli zadawać pytań. Trzeba robić przerwy. Natomiast jeśli sprawa jest pilna możemy mówić trochę szybciej. Po przekazaniu idei nalezy zatrzymac sie na moment i dać widzom czas do namysłu. Powinniśmy być otwarci na pytania wtrakcie lub na końcu prezentacji. 
+
+W przedstawianiu prezentacji powinniśmy:
+- rozmawiać z publicznością,
+- mniej znaczy więcej,
+- przekaz powinien być spójny i trwały,
+- byc gotowi na pytania.
+
+### Błędy w prezentacji
+
+W celu przygotowania dobrej prezentacji powinniśmy zaplanować to co zamierzamy zaprezentować:
+- unikać długich prezentacji, 
+- publiczność ma pewien zakres uwagi,
+- poświęcać czas na pytania odbiorców,
+- podawać cel prezentacji na początku,
+- mówcy powinni utzymywać uwagę naszych odbiorców,
+- Wnioski powinny być w całej prezentacji a nie tylko na końcu,
+- unikać monologu,
+- angazować odbiorców,
+- powinniśmy okreslać nasze kluczowe założenia,
+- zadawanie pytań w trakcie prezentacji,
+- trzymać się tematu,
+- używać ruchu rąk,
+- używać różnych tonacji głosu by podkreslać przekaz,
+- różnicować szybkosc mówienia,
+- przedstawiać nowe pomyśły i nowe rozwiązania,
+- zaangażowanie w prezentację.
+
+
+## Import Data
+
+### Reading file
+
+```python
+filename = 'huck_finn.txt'
+file = open(filename, mode='r')  #'r' is to read
+text = file.read()
+file.close()
+```
+Powyższy kod służy do odczytu pliku. Argument r gwarantuje że plik sluzy tylko do odczytu.
+
+`text = file.read()` - zapis jako jeden ciąg znaków.
+
+### Zapis do pliku
+
+```python
+filename = 'huck_finn.txt'
+file = open(filename, mode='w')
+file.close()
+```
+
+Można uniknąć koniecznosci zamykania połączenia z plikiem wykorzystując operator `with`
+
+```python
+with open('huck_finn.txt', 'r') as file: 
+    text = file.read()
+```
+
+Dzięki wykorzystaniu with mozliwe jest tworzenie kontekstu, który umożliwa wykonywanie poleceń przy otwartym pliku. Po wyjsciu z tego plik nie jest używany. Nazywa się to menadzerem kontekstu.
+
+
+### Import of flat files
+
+Pliki płaskie(flat files) to pliki tekstowe zawierajace rekordy bez relacji strukturalnych (czy nie jak w bazach danych). Czyli nie możemy powiazac kolumny różnych tabel. Wartości w plikach płaskich oddziela się znakami lub ciagami znaków takimi jak przecinki, tabulatory.
+
+
+### Importing flat files using NumPy
+
+Tablice NumPy sa standardem do przechowywania danych liczbowych. Są szybkie i są czyste. Wykorzytywane sa do pakietu scikit-learn, który jest popularny do uczenia maszynowego. NumPy posiada wiele wbudowanych funkcji, które ułatwiają i usprawniają importowanie danych: `loadtxt()`, `genfromtxt()`
+
+```python
+import numpy as np
+filename = 'MNIST.txt'
+data = np.loadtxt(filename, delimiter=',')
+data
+```
+
+Domyślnym ogranicznikiem jest spacja więc trzeba określić ogranicznik jawnie. 
+
+Jeśli chcemy pominąc dany wiersz to używamy parametru `skiprows`. Jeśli chcemy wybrane kolumny to używamy `usecols`
+
+```python
+import numpy as np
+filename = 'MNIST.txt'
+data = np.loadtxt(filename, delimiter=',', skiprows=1, usecols=[0, 2])
+print(data)
+```
+
+Można importować wyłącznie dane określonego typu. 
+
+```python
+data = np.loadtxt(filename, delimiter=',', dtype=str)
+```
+`loadtxt` ma wadę gdy importujemy dane róźnego typu.
+
+### Importing flat files using pandas
+
+Czym się różnią macierze od ramek danych?
+Macierze mają wiersze i kolumny. Ramki danych posiadają obserwacje i zmienne.
+
+Importowanie plików w Pandas
+
+```python
+import pandas as pd
+filename = 'winequality-red.csv'
+data = pd.read_csv(filename)
+data.head()
+```
+
+`data.head()` wyświetli pierwsze pięć wierszy. Można konwertować ramkę danych do macierzy NumPy.
+
+```python
+data_array = data.to_numpy()
+```
+
+Key arguments for `pd.read_csv()` include:
+
+`sep` sets the expected delimiter.
+You can use `','` for comma-delimited.
+You can use `'\t'` for tab-delimited.
+`comment` takes characters that comments occur after in the file, indicating that any text starting with these characters should be ignored.
+`na_values` takes a list of strings to identify as `NA/NaN`. By default, some values are already recognized as `NA/NaN`.
+Providing this argument will supply additional values.
+
+ 
+
+### Introduction to other file types
+
+Python potrafi oddczytać oprócz plików `*.csv` i `*.txt` także:
+
+- Excel
+- MATLAB
+- SAS (Statistical Analysis System)
+- Stata ("Statistics" + "data")
+- HDF5
+
+
+Python posiada także własne rozszerzenie które używa jest to `pickled` są one zapisywane w formacie binarnym. Można nim zapisywać różne rodzaje
+typów zmiennych.
+
+
+#### Otwieranie pliku pickle (`pkl`):
+
+Warto zauważyć że wykorzystano argument 'rb', który służy do czytania plików binarnych. 
+```python
+import pickle
+with open('pickled_fruit.pkl', 'rb') as file
+    data = pickle.load(file)
+print(data)
+```
+
+### Importowanie danych z Excela
+
+```python
+import pandas as pd
+file = 'urbanpop.xlsx'
+data = pd.ExcelFile(file)
+print(data.sheet_names)
+
+# ['1960-1966', '1967-1974', '1975']
+
+df1 = data.parse('1960-1966')
+df2 = data.parse(0)
+```
+
+df1, df2 - wskazanie danego arkusza w excelu. Można wyświetlić po nazwie arkusza albo indexie.
+
+The spreadsheet `'battledeath.xlsx'` is already loaded as `xls`.
+
+As before, you'll use the method `parse()`. This time, however, you'll add the additional arguments `skiprows`, `names` and `usecols`.
+These skip rows, name the columns and designate which columns to parse, respectively. All these arguments can be assigned to lists
+containing the specific row numbers, strings and column numbers, as appropriate.
+
+#### Import SAS files
+
+```python
+import pandas as pd
+from sas7bdat import SAS7BDAT
+with SAS7BDAT('urbanpop.sas7bdat') as file
+    df_sas = file.to_data_frame()
+```
+
+#### Import Stata files
+
+```python
+import pandas as pd
+data = pd.read_stata('urbanpop.dta')
+```
+
+#### Import HDF5
+Format pliku który przeechowuje dużo danych. Można skalować do setek eksabajtów. 
+
+```python
+import h5py
+filename = 'H-H1_LOSC_4_V1-815411200-4096.hdf5'
+data = h5py.File(filename, 'r')
+print(type(data))
+```
+
+Struktura plików HDF5
+
+Grupy (Groups) – Działają jak katalogi, organizując dane w logiczny sposób.
+Datasety (Datasets) – Macierze numeryczne przechowywane w pliku.
+Atrybuty (Attributes) – Dodatkowe informacje przypisane do grup i datasetów.
+Ma hierarchiczną strukturę.
+
+```python
+for key in data.keys():
+    print(key)
+```
+```python
+print(np.array(data['meta']['Description']), np.array(data['meta']['Detector']))
+```
+
+#### Import MATLAB
+
+Wykorzystujemy do tego bibliotekę `SciPy`, gdzie do odczytu używamy `scipy.io.loadmat()` a do zapisu `scipy.io.savemat()`
+Importowany plik MATLAB może zawierać zarówno zmienne, komentarze, listy, macierze. 
+
+```python
+import scipy.io
+filename = 'workspace.mat'
+mat = scipy.io.loadmat(filename)
+print(type(mat))
+#<class 'dict'>
+```
+Dane są zapisywane w słowniku. Klucze slownika to nazwy zmiennych MATLAB, a wartości słownika Pythona to obiekty przypisane do zmiennych. Na przykład:
+
+```python
+print(type(mat['x']))
+#<class 'numpy.ndarray'>
+```
+
+
+### Itrodution to relational databases
+
+
+Bazy danych skladaja sie z tabel połączonych miedzy sobą relacjami. Każda tabela to zbiór istancji/obiektów/bytów które maja okreslone atrybuty. W wierszach zapisujemy obiekty natomiast w kolumnach atrybuty. Każdy wiersz posiada unikalny identyfikator znany jako klucz podstawowy. 
+//TO DO 
+
+Każdy wiersz lub rekord w tabeli reprezentuje instancję typu encji.
+Każda kolumna w tabeli reprezentuje atrybut lub cechę instancji.
+Każda tabela zawiera kolumnę klucza podstawowego, która ma unikalny wpis dla każdego wiersza.
+Istnieją relacje między tabelami.
+// TO DO 12 przykazań Codda - relacyjne bazy danych. 
+
+#### Creating a database engine in Python
+Bedziemy pobierać dane z naszych baz danych SQL. Aby uzyskać dostęp do baz danych z wykorzystaniem Pythona wykorzystujemy:
+- sqlite3
+- SQLAlchemy
+
+sqlite3 współpracuje tylko z SQLite. Natomiast SQLAlchemy współpracuje z wieloma rodzajami baz danych takimi jak Postgres i MySQL. 
+
+Uruchamiamy silnik SQL, który przekaże nasze wyniki zapytań do bazy danych. 
+
+```python
+from sqlalchemy import create_engine
+engine = create_engine('sqlite:///Northwind.sqlite')
+```
+
+Nazwy kolumn w tabeli można poznać z wykorzystaniem:
+
+```python
+table_names = engine.table_names()
+print(table_names)
+```
+### Querying relational databases in Python
+
+Tworzenie zapytan do SQL.
+```sql
+SELECT * FROM Table_Name
+```
+
+```sql
+SELECT * FROM Orders
+```
+* - gwiazdka oznacza wszystkie kolumny.
+
+W SQLAlchemy tworzymy zapytania w następujący sposób: 
+- importujemy pakiety i funkcje,
+- tworzymy silnik,
+- połączenie z nim,
+- zapytanie do bazy danych,
+- zapisanie danych
+- zamkniecie zapytania.
+
+Przykładowe zapytanie:
+
+```python
+from sqlalchemy import create_engine
+import pandas as pd
+engine = create_engine('sqlite:///Nortwind.sqlite')
+con = engine.connect()
+rs = con.execute("SELECT * FROM Orders")
+df = pd.DataFrame(rs.fetchall())
+con.close()
+```
+`fetchall` odpowiada za pobieranie wierszy w tabeli. 
+
+Powyższe zapytanie jest niedopracowane ze wzgledu na brak nazw kolumn. Trzeba to dodać znawanie kolumn `df.columns = rs.keys()`.
+
+```python
+from sqlalchemy import create_engine
+import pandas as pd
+engine = create_engine('sqlite:///Nortwind.sqlite')
+con = engine.connect()
+rs = con.execute("SELECT * FROM Orders")
+df = pd.DataFrame(rs.fetchall())
+df.columns = rs.keys()
+con.close()
+```
+
+Powyższe zapytanie można zmienić dodając menadzera kontekstu `with`. 
+
+```python
+from sqlalchemy import create_engine
+import pandas as pd
+engine = create_engine('sqlite:///Nortwind.sqlite')
+with engine.connect() as con:
+    rs = con.execute("SELECT OrderID, OrderDate, ShipName FROM Orders")
+    df = pd.DataFrame(rs.fetchmany(size=5))
+    df.columns = rs.keys()
+```
+`fetchmany(size=5)` importuje tylko 5 wierszy.
+
+Powyższe zapytanie można zrobic krocej i zrobić to w jednej linijce:
+
+```python
+df = pd.read_sql_query("SELECT * FROM Orders", engine)
+```
+
+#### INNER JOIN in Python(pandas)
+
+INNER JOIN sluzy do łączenia tabel.
+
+```python
+from sqlalchemy import create_engine
+import pandas as pd
+engine = create_engine('sqlite:///Northwind.sqlite')
+df = pd.read_sql_query("SELECT OrderID, CompanyName FROM Orders INNER JOIN Customers on Orders.CustomerID = Customers.CustomerID", engine)
+print(df.head())
+```
+
+## Cleaning Data in Python
+
+### Data type constraints
